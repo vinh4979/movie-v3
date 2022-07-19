@@ -4,31 +4,36 @@ import { OutlineButton } from 'src/components/button/Button'
 import HeroSlide from 'src/components/heroSilde/HeroSlide'
 import MovieList from 'src/components/movieList/MovieList'
 import { useDispatch, useSelector } from 'react-redux'
-import { layDanhSachBannerAction } from 'src/redux/actions/QuanLyPhimAction'
+import {
+  layDanhSachmaPhimBannerAction,
+  layDanhSachPhimAction
+} from 'src/redux/actions/QuanLyPhimAction'
 
 export default function HomePage() {
+  const { banner, movieList } = useSelector(state => state.QuanLyPhimReducer)
+
   const dispatch = useDispatch()
   useEffect(() => {
-    dispatch(layDanhSachBannerAction())
+    dispatch(layDanhSachPhimAction())
+    dispatch(layDanhSachmaPhimBannerAction())
   }, [dispatch])
 
-  const { movieLst } = useSelector(state => state.QuanLyPhimReducer)
-  // movieLst trả về mảng chứa tất cả phim.
-  // tại đây cần tách phim đang chiếu và phim sắp chiếu
-  // hoặc phim đang thịnh hành
-  console.log('quan ly phim:', movieLst)
+  // loc danh sach flim dang hot
+  const hotMovie = movieList?.filter(item => item.hot === true)
+
   return (
     <>
-      <HeroSlide />
+      <HeroSlide bannerList={banner} />
       <div className="container">
+        {/* trending now */}
         <div className="section mb-3">
           <div className="section__header mb-2">
-            <h2>Showing Movie</h2>
+            <h2>TRENDING NOW</h2>
             <Link to="/movie">
               <OutlineButton className="small">View More</OutlineButton>
             </Link>
           </div>
-          <MovieList movieLst={movieLst} />
+          <MovieList movieLst={hotMovie} />
         </div>
 
         <div className="section mb-3">
@@ -38,7 +43,7 @@ export default function HomePage() {
               <OutlineButton className="small">View More</OutlineButton>
             </Link>
           </div>
-          <MovieList movieLst={movieLst.slice(10, 20)} />
+          <MovieList movieLst={banner.slice(10, 20)} />
         </div>
       </div>
     </>

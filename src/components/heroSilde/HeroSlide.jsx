@@ -2,7 +2,6 @@ import React, { useRef as UseRef } from 'react'
 
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
-import { banner } from '../../utils/sildeData'
 import './heroSlide.scss'
 import Button, { OutlineButton } from '../button/Button'
 
@@ -10,9 +9,7 @@ import { useHistory } from 'react-router'
 
 import Modal, { ModalContent } from '../modal/Modal'
 
-const HeroSlide = () => {
-  console.log('banner:', banner)
-
+const HeroSlide = ({ bannerList }) => {
   return (
     <div className="hero-slide">
       <Swiper
@@ -22,7 +19,7 @@ const HeroSlide = () => {
         slidesPerView={1}
         // autoplay={{ delay: 3000 }}
       >
-        {banner.map((item, index) => {
+        {bannerList.map((item, index) => {
           return (
             <SwiperSlide key={index}>
               {({ isActive }) => (
@@ -35,7 +32,7 @@ const HeroSlide = () => {
           )
         })}
       </Swiper>
-      {banner.map((item, index) => {
+      {bannerList.map((item, index) => {
         return <TrailerModal key={index} item={item} />
       })}
     </div>

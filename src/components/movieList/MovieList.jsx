@@ -6,9 +6,8 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/pagination'
 import 'swiper/css/navigation'
-import { Pagination, Navigation } from 'swiper'
+import { Pagination, Navigation, Autoplay } from 'swiper'
 import MovieCard from '../movieCard/MovieCard'
-import BtnNextSwiper from '../buttonNextSwiper/BtnNextSwiper'
 
 const MovieList = ({ movieLst }) => {
   // const [swiperRef, setSwiperRef] = useState(null)
@@ -16,27 +15,28 @@ const MovieList = ({ movieLst }) => {
   return (
     <div className="movie-list " style={{ overflow: 'visible' }}>
       <Swiper
-        // style={{ overflow: 'visible' }}
-        // onSwiper={swiper}
         slidesPerView={1}
-        //   centeredSlides={true}
         spaceBetween={10}
-        // pagination={true}
+        loop={true}
         navigation={true}
-        modules={[Pagination, Navigation]}
+        modules={[Pagination, Navigation, Autoplay]}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false
+        }}
         className=""
         breakpoints={{
           390: {
-            slidesPerView: 2,
+            slidesPerView: 3,
             spaceBetween: 10
           },
           768: {
-            slidesPerView: 3,
+            slidesPerView: 5,
             spaceBetween: 15
           },
           1024: {
-            slidesPerView: 5,
-            spaceBetween: 20
+            slidesPerView: 6,
+            spaceBetween: 10
           }
         }}
       >
