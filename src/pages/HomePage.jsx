@@ -18,8 +18,16 @@ export default function HomePage() {
     dispatch(layDanhSachmaPhimBannerAction())
   }, [dispatch])
 
-  // loc danh sach flim dang hot
+  // danh sach flim dang hot
   const hotMovie = movieList?.filter(item => item.hot === true)
+  // console.log(hotMovie)
+
+  // phim dang chieu
+  const showingMovie = movieList?.filter(item => item.dangChieu === true)
+  console.log('dang chieu', showingMovie)
+
+  // phim sap chieu
+  const comming = movieList?.filter(item => item.sapChieu === true)
 
   return (
     <>
@@ -38,12 +46,22 @@ export default function HomePage() {
 
         <div className="section mb-3">
           <div className="section__header mb-2">
-            <h2>Comming Movie</h2>
+            <h2>Showing Movie </h2>
             <Link to="/movie">
               <OutlineButton className="small">View More</OutlineButton>
             </Link>
           </div>
-          <MovieList movieLst={banner.slice(10, 20)} />
+          <MovieList movieLst={showingMovie} />
+        </div>
+
+        <div className="section mb-3">
+          <div className="section__header mb-2">
+            <h2>Comming Movie </h2>
+            <Link to="/movie">
+              <OutlineButton className="small">View More</OutlineButton>
+            </Link>
+          </div>
+          <MovieList movieLst={comming} />
         </div>
       </div>
     </>

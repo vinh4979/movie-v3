@@ -24,6 +24,13 @@ export const OutlineButton = props => {
   )
 }
 
+export const CardBtn = props => {
+  return (
+    <button className={`btn-outline ${props.className} `}>
+      {props.children}
+    </button>
+  )
+}
 Button.propTypes = {
   onclick: PropTypes.func
 }

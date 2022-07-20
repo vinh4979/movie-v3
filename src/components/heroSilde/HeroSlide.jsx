@@ -8,16 +8,19 @@ import Button, { OutlineButton } from '../button/Button'
 import { useHistory } from 'react-router'
 
 import Modal, { ModalContent } from '../modal/Modal'
+import { Pagination, Navigation, Autoplay } from 'swiper'
 
 const HeroSlide = ({ bannerList }) => {
   return (
     <div className="hero-slide">
       <Swiper
-        // modules={[Autoplay]}
-        // grabCursor={true}
+        modules={[Pagination, Navigation, Autoplay]}
         spaceBetween={50}
         slidesPerView={1}
-        // autoplay={{ delay: 3000 }}
+        autoplay={{
+          delay: 4000,
+          disableOnInteraction: false
+        }}
       >
         {bannerList.map((item, index) => {
           return (
@@ -57,7 +60,7 @@ const HeroSlideItem = props => {
         .querySelector('.modal__content > iframe')
         .setAttribute('src', videSrc)
     } else {
-      modal.querySelector('.modal__content').innerHTML = 'No trailer'
+      modal.querySelector('.modal__content > h1').innerHTML = 'No trailer'
     }
 
     modal.classList.toggle('active')
@@ -89,7 +92,7 @@ const HeroSlideItem = props => {
   )
 }
 
-const TrailerModal = props => {
+export const TrailerModal = props => {
   const iframe = UseRef(null)
   const item = props.item
 
@@ -98,6 +101,7 @@ const TrailerModal = props => {
   return (
     <Modal active={false} id={`modal_${item.maPhim}`}>
       <ModalContent onClose={onClose}>
+        <h1></h1>
         <iframe
           ref={iframe}
           width="100%"

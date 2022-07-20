@@ -1,0 +1,17 @@
+@use '../../scss/' as *;
+
+.class-c {
+  display: inline !important;
+  padding: 0.1rem 1rem;
+  font-size: 1rem;
+  border-radius: 3px;
+  background-color: #00ac4d;
+  color: white;
+  margin-right: 0.5rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  transform: translate(50%, 50%);
+  z-index: 1;
+}
