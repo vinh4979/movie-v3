@@ -40,8 +40,8 @@ const Header = () => {
     }
   }, [])
 
-  console.log('pathname:', pathname)
-  console.log('active', active)
+  // console.log('pathname:', pathname)
+  // console.log('active', active)
   return (
     <div ref={headerRef} className="header">
       <div className="header__wrap container">

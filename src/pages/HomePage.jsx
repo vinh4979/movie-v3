@@ -24,7 +24,7 @@ export default function HomePage() {
 
   // phim dang chieu
   const showingMovie = movieList?.filter(item => item.dangChieu === true)
-  console.log('dang chieu', showingMovie)
+  // console.log('dang chieu', showingMovie)
 
   // phim sap chieu
   const comming = movieList?.filter(item => item.sapChieu === true)

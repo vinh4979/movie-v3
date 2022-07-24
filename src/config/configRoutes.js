@@ -10,7 +10,7 @@ const ConfigRoutes = () => {
   return (
     <Switch>
       <Route path="/catalog" component={Catalog} />
-      <Route path="/detail" component={DetailPage} />
+      <Route path="/detail/:id" component={DetailPage} />
       <Route path="/" exact component={HomePage} />
     </Switch>
   )

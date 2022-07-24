@@ -29,11 +29,11 @@ const MovieList = ({ movieLst }) => {
         className=""
         breakpoints={{
           390: {
-            slidesPerView: 3,
+            slidesPerView: 2,
             spaceBetween: 10
           },
           768: {
-            slidesPerView: 5,
+            slidesPerView: 3,
             spaceBetween: 15
           },
           1024: {

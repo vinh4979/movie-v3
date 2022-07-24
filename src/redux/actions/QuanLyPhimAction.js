@@ -1,5 +1,9 @@
 import { quanLyPhimService } from 'src/services/QuanLyPhimService'
-import { LAY_DANH_SACH_BANNER, LAY_DANH_SACH_PHIM } from 'src/redux/type'
+import {
+  LAY_DANH_SACH_BANNER,
+  LAY_DANH_SACH_PHIM,
+  THONG_TIN_PHIM_THEO_ID
+} from 'src/redux/type'
 
 export const layThongtinPhimAction = maPhim => {
   return async dispatch => {
@@ -39,6 +43,21 @@ export const layDanhSachPhimAction = () => {
       // console.log('list phim', result)
     } catch (err) {
       // console.log('list phim err', err)
+    }
+  }
+}
+
+export const layThongTinPhimTheoMaPhimAction = id => {
+  return async dispatch => {
+    try {
+      const result = await quanLyPhimService.layThongTinPhim(id)
+      dispatch({
+        type: THONG_TIN_PHIM_THEO_ID,
+        movieById: result.data.content
+      })
+      console.log('laythongtinphimaction:', result)
+    } catch (err) {
+      console.log('list layThongTinPhimTheoMaPhimAction ', err)
     }
   }
 }

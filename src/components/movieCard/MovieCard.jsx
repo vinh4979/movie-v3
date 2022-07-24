@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Button, { CardBtn } from '../button/Button'
-import MovieClass from '../movieClass/MovieClass'
 import './movie-card.scss'
 
 const MovieCard = props => {
@@ -31,25 +30,22 @@ const MovieCard = props => {
         className={`movie-card `}
         style={{
           backgroundImage: `url(${bg})`
-          // backgroundPosition: 'center',
-          // backgroundSize: 'cover'
         }}
       >
         <Button onClick={setModalActive}>
           <i className="bx bx-play"></i>
         </Button>
-        {/* <MovieClass /> */}
-        <div
-          style={{
-            position: 'absolute',
-            bottom: 0,
-            left: 0
-          }}
-        >
+        <div className="film-content ">
           <h3>{item.tenPhim}</h3>
-          <div>
-            <CardBtn className="medium">Deatail</CardBtn>
-            <CardBtn className="medium">Booking</CardBtn>
+          <div className="card-button">
+            <Link href={`/detail/${item.maPhim}`} to={`/detail/${item.maPhim}`}>
+              <CardBtn className="">Deatail</CardBtn>
+            </Link>
+            <CardBtn className="btn-booking">
+              <span>
+                <span>Booking</span>
+              </span>
+            </CardBtn>
           </div>
         </div>
       </div>
