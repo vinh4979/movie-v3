@@ -1,0 +1,60 @@
+@use '../../scss/' as *;
+
+.product-collater {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  font-family: Verdana, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 18px;
+
+  .toggle-tabs {
+    background: transparent;
+    border: medium;
+    text-align: center;
+    display: block;
+    width: 100%;
+    position: relative;
+    clear: both;
+  }
+  ul {
+    list-style: none;
+    float: left;
+    & > li {
+      display: inline-block;
+      &:first-child {
+        background: url('https://www.cgv.vn/skin/frontend/cgv/default/images/bg-cgv/bg-ribon-left-transparent.png')
+          no-repeat scroll left top transparent;
+        padding-left: 19px;
+      }
+      &:last-child {
+        background: url('https://www.cgv.vn/skin/frontend/cgv/default/images/bg-cgv/bg-ribon-right-transparent.png')
+          no-repeat scroll right top transparent;
+        padding-right: 19px;
+      }
+
+      span {
+        box-sizing: content-box;
+        color: #fff;
+        display: inline-block;
+        padding: 0px 20px;
+        height: 40px;
+        line-height: 40px;
+        background-color: #e71a0f;
+      }
+    }
+    .last > span {
+      background: url('https://www.cgv.vn/skin/frontend/cgv/default/images/bg-cgv/bg-tebmenu-line.gif')
+        no-repeat scroll left 16px #e71a0f;
+    }
+
+    .current {
+      & > span::before {
+        background: url(https://www.cgv.vn/skin/frontend/cgv/default/images/bg-cgv/bg-icon-finger.png)
+          no-repeat scroll 5px 50% #e71a0f;
+        content: '';
+        padding-left: 40px;
+      }
+    }
+  }
+}

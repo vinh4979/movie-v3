@@ -35,6 +35,7 @@ const HeroSlide = ({ bannerList }) => {
           )
         })}
       </Swiper>
+
       {bannerList.map((item, index) => {
         return <TrailerModal key={index} item={item} />
       })}
@@ -77,7 +78,7 @@ const HeroSlideItem = props => {
           <div className="overview">{item.moTa}</div>
           <div className="btns">
             <Button onClick={() => hisrory.push('/movie/' + item.maPhim)}>
-              Watch now
+              Booking Now
             </Button>
             <OutlineButton onClick={setModalActive}>
               Watch trailer

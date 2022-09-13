@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { layThongTinPhimTheoMaPhimAction } from 'src/redux/actions/QuanLyPhimAction'
 import GlassBg from 'src/components/glassMorphismBackground/GlassBg'
 import DetailFilm from 'src/components/detailFilm/DetailFilm'
+import Description from 'src/components/Description/Description'
 
 export default function DetailPage() {
   const { id } = useParams()
@@ -25,6 +26,7 @@ export default function DetailPage() {
           <h1>Movie Detail</h1>
           <hr />
           <DetailFilm detail={movieById} />
+          <Description movie={movieById} />
         </div>
       </div>
     </>

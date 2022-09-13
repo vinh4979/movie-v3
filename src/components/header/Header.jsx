@@ -1,3 +1,4 @@
+import { Button, Stack } from '@mui/material'
 import React, { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { useLocation } from 'react-router-dom'
@@ -57,6 +58,16 @@ const Header = () => {
             </li>
           ))}
         </ul>
+        <div className="__sign">
+          <Stack spacing={2} direction="row">
+            <Button color="error" variant="contained">
+              <Link to="/signin">Sign In</Link>
+            </Button>
+            <Button color="error" variant="outlined">
+              <Link to="/signup">Sign Up</Link>
+            </Button>
+          </Stack>
+        </div>
       </div>
     </div>
   )

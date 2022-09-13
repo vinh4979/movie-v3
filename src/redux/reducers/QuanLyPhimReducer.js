@@ -7,7 +7,8 @@ import {
 const stateDefault = {
   movieList: [],
   banner: [],
-  movieById: ''
+  movieById: '',
+  searchMovie: null
 }
 
 export const QuanLyPhimReducer = (state = stateDefault, action) => {
@@ -24,6 +25,7 @@ export const QuanLyPhimReducer = (state = stateDefault, action) => {
       state.movieById = action.movieById
       return { ...state }
     }
+
     default:
       return { ...state }
   }

@@ -34,6 +34,11 @@ export const CardBtn = props => {
     </button>
   )
 }
+
+export const TabButton = props => {
+  return <div></div>
+}
+
 Button.propTypes = {
   onclick: PropTypes.func
 }

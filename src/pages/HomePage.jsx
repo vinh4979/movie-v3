@@ -8,23 +8,26 @@ import {
   layDanhSachmaPhimBannerAction,
   layDanhSachPhimAction
 } from 'src/redux/actions/QuanLyPhimAction'
+import Booking from 'src/components/home.component/Booking/Booking'
+import { layThongTinRapAction } from '../redux/actions/QuanLyRapAction'
+import SearchBar from 'src/components/home.component/SearchBar/SearchBar'
+import { banner } from 'src/utils/sildeData'
 
 export default function HomePage() {
-  const { banner, movieList } = useSelector(state => state.QuanLyPhimReducer)
+  const { movieList } = useSelector(state => state.QuanLyPhimReducer)
+  const { cinemaList } = useSelector(state => state.QuanLyRapReducer)
 
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(layDanhSachPhimAction())
-    dispatch(layDanhSachmaPhimBannerAction())
+    dispatch(layThongTinRapAction())
   }, [dispatch])
 
   // danh sach flim dang hot
   const hotMovie = movieList?.filter(item => item.hot === true)
-  // console.log(hotMovie)
 
   // phim dang chieu
   const showingMovie = movieList?.filter(item => item.dangChieu === true)
-  // console.log('dang chieu', showingMovie)
 
   // phim sap chieu
   const comming = movieList?.filter(item => item.sapChieu === true)
@@ -64,6 +67,10 @@ export default function HomePage() {
           <MovieList movieLst={comming} />
         </div>
       </div>
+      {/* booking */}
+      <Booking logo={cinemaList} />
+      {/* search bar */}
+      {/* <SearchBar movieList={movieList} /> */}
     </>
   )
 }

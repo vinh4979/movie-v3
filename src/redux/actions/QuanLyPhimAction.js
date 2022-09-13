@@ -40,7 +40,7 @@ export const layDanhSachPhimAction = () => {
         type: LAY_DANH_SACH_PHIM,
         movieList: result.data.content
       })
-      // console.log('list phim', result)
+      console.log('list phim', result)
     } catch (err) {
       // console.log('list phim err', err)
     }

@@ -3,7 +3,7 @@ import './glassBg.scss'
 
 export default function GlassBg({ bg }) {
   const background = bg
-  console.log(bg)
+  // console.log(bg)
   return (
     <div className="glass">
       <div

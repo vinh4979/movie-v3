@@ -12,8 +12,6 @@ import { TrailerModal } from '../heroSilde/HeroSlide'
 import MovieClass from '../movieClass/MovieClass'
 
 const MovieList = ({ movieLst }) => {
-  // const [swiperRef, setSwiperRef] = useState(null)
-
   return (
     <div className="movie-list " style={{ overflow: 'visible' }}>
       <Swiper

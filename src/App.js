@@ -3,20 +3,29 @@ import { BrowserRouter, Route } from 'react-router-dom'
 import Header from './components/header/Header'
 import Footer from './components/footer/Footer'
 import ConfigRoutes from './config/configRoutes'
+import { createTheme, CssBaseline, ThemeProvider } from '@mui/material'
 
 function App() {
+  const theme = createTheme({
+    palette: {
+      mode: 'dark'
+    }
+  })
   return (
-    <BrowserRouter>
-      <Route
-        render={props => (
-          <>
-            <Header {...props} />
-            <ConfigRoutes />
-            <Footer />
-          </>
-        )}
-      />
-    </BrowserRouter>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <BrowserRouter>
+        <Route
+          render={props => (
+            <>
+              <Header {...props} />
+              <ConfigRoutes />
+              <Footer />
+            </>
+          )}
+        />
+      </BrowserRouter>
+    </ThemeProvider>
   )
 }
 
