@@ -63,10 +63,9 @@ export default function SigninPage() {
   const handleLogin = data => {
     // here
     const body = {
-      taiKhoan: data.email,
+      taiKhoan: data.name,
       matKhau: data.password
     }
-    console.log('body', body)
     try {
       dispatch(dangNhapAction(body))
     } catch (err) {
@@ -105,23 +104,23 @@ export default function SigninPage() {
             }}
           >
             <Controller
-              name="email"
+              name="name"
               control={control}
-              rules={rules.email}
+              rules={rules.name}
               render={({ field }) => (
                 <TextField
                   margin="normal"
                   required
                   fullWidth
-                  id="email"
-                  label="Email"
-                  name="email"
-                  type="email"
+                  id="name"
+                  label="User Name"
+                  name="name"
+                  type="text"
                   onChange={field.onChange}
-                  value={getValues('email')}
+                  value={getValues('name')}
                   disabled={false}
-                  error={errors['email']?.message !== undefined}
-                  helperText={errors['email']?.message}
+                  error={errors['name']?.message !== undefined}
+                  helperText={errors['name']?.message}
                   sx={{
                     mb: 2,
                     '&:active': {

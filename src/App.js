@@ -4,6 +4,7 @@ import Header from './components/header/Header'
 import Footer from './components/footer/Footer'
 import ConfigRoutes from './config/configRoutes'
 import { createTheme, CssBaseline, ThemeProvider } from '@mui/material'
+import AlertModal from './components/alertModal/AlertModal'
 
 function App() {
   const theme = createTheme({
@@ -18,6 +19,7 @@ function App() {
         <Route
           render={props => (
             <>
+              <AlertModal />
               <Header {...props} />
               <ConfigRoutes />
               <Footer />

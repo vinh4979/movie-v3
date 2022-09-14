@@ -4,14 +4,11 @@ import { OutlineButton } from 'src/components/button/Button'
 import HeroSlide from 'src/components/heroSilde/HeroSlide'
 import MovieList from 'src/components/movieList/MovieList'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-  layDanhSachmaPhimBannerAction,
-  layDanhSachPhimAction
-} from 'src/redux/actions/QuanLyPhimAction'
+import { layDanhSachPhimAction } from 'src/redux/actions/QuanLyPhimAction'
 import Booking from 'src/components/home.component/Booking/Booking'
 import { layThongTinRapAction } from '../redux/actions/QuanLyRapAction'
-import SearchBar from 'src/components/home.component/SearchBar/SearchBar'
 import { banner } from 'src/utils/sildeData'
+import AlertModal from 'src/components/alertModal/AlertModal'
 
 export default function HomePage() {
   const { movieList } = useSelector(state => state.QuanLyPhimReducer)
