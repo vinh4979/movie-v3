@@ -55,7 +55,16 @@ export const isEmail = value =>
     value
   )
 
+// fake duration movie
 export const randomDuration = () =>
   Math.trunc(Math.random() * (200 - 120) + 120)
 
+//fake imb movie
 export const randomNumber = () => Math.trunc(Math.random() * (8 - 5) + 5)
+
+// get today
+export const today = (minusDay = 11) => {
+  const toDay = new Date()
+  toDay.setMonth(toDay.getMonth() - minusDay)
+  return toDay
+}

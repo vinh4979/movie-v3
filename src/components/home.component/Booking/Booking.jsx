@@ -1,22 +1,33 @@
 import React, { useEffect, useState } from 'react'
-
+import format from 'date-format'
 import './booking.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { LayThongTinLichChieuHeThongRapAction } from 'src/redux/actions/QuanLyRapAction'
+import MuiAccordionDetails from '@mui/material/AccordionDetails'
 import {
   Accordion,
-  AccordionDetails,
   AccordionSummary,
   Avatar,
   Box,
   Divider,
+  List,
+  ListItem,
+  ListItemAvatar,
+  ListItemText,
   Paper,
+  styled,
   Typography
 } from '@mui/material'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import { randomDuration, randomNumber } from 'src/utils/helper'
 import LogoImb from 'src/assets/img/imdb-logo.png'
 import { OutlineButton } from 'src/components/button/Button'
+import AcUnitIcon from '@mui/icons-material/AcUnit'
+
+const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
+  padding: theme.spacing(2),
+  borderTop: '1px solid rgba(0, 0, 0, .125)'
+}))
 
 const Booking = ({ logo }) => {
   const dispatch = useDispatch()
@@ -54,56 +65,197 @@ const Booking = ({ logo }) => {
   const handleChange = panel => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false)
   }
+
+  const [selectedIndex, setSelectedIndex] = useState(1)
+
+  const handleListItemClick = (event, index) => {
+    setSelectedIndex(index)
+  }
+
   return (
     <>
       <div className="container booking-table ">
-        <div className="booking-container">
-          {/* render logo */}
-          <div className="brandLogo">
-            {logo?.map((item, index) => {
-              return (
-                <div
-                  className="logoItem"
-                  onClick={() => chooseCinemaHandle(item.maHeThongRap)}
-                  key={index}
-                >
-                  <img src={item.logo} alt={item.maHeThongRap} />
-                </div>
-              )
-            })}
-          </div>
-          {/* cinema info */}
-          <div className="cinema">
-            {cinemaByBrand[0]?.lstCumRap.map((item, index) => {
-              return (
-                <>
-                  <div
-                    onClick={() => {
-                      HandleCumRap(item.maCumRap)
-                    }}
-                    key={index}
-                    className="cinemaItem"
-                  >
-                    <div>
-                      <img src={item.hinhAnh} alt="" />
+        <Box
+          sx={{
+            margin: '0 32px'
+          }}
+        >
+          <Paper>
+            <div className="booking-container">
+              {/* render logo */}
+              <div className="brandLogo">
+                {logo?.map((item, index) => {
+                  return (
+                    <div
+                      className="logoItem"
+                      onClick={() => chooseCinemaHandle(item.maHeThongRap)}
+                      key={index}
+                    >
+                      <div className="item">
+                        <img src={item.logo} alt={item.maHeThongRap} />
+                      </div>
                     </div>
-                    <div>
-                      <h3>{item.tenCumRap}</h3>
-                      <p>{item.diaChi}</p>
-                    </div>
-                  </div>
-                  <hr />
-                </>
-              )
-            })}
-          </div>
+                  )
+                })}
+              </div>
 
-          <div className="schedule">
-            {phimTheoCumRap?.map((item, index) => {
-              return <p key={index}>{item.tenPhim}</p>
-            })}
-          </div>
-        </div>
+              {/* cinema info */}
+              <div className="cinema">
+                {/* {cinemaByBrand[0]?.lstCumRap.map((item, index) => {
+                  return (
+                    <>
+                      <div
+                        onClick={() => {
+                          HandleCumRap(item.maCumRap)
+                        }}
+                        key={index}
+                        className="cinemaItem"
+                      >
+                        <div>
+                          <img src={item.hinhAnh} alt="" />
+                        </div>
+                        <div>
+                          <h3>{item.tenCumRap}</h3>
+                          <p>{item.diaChi}</p>
+                        </div>
+                      </div>
+                      <hr />
+                    </>
+                  )
+                })} */}
+                <List>
+                  {cinemaByBrand[0]?.lstCumRap.map((item, index) => {
+                    return (
+                      <>
+                        <ListItem
+                          mb={3}
+                          sx={{
+                            gap: '15px'
+                          }}
+                          selected={selectedIndex === index}
+                          onClick={event => {
+                            handleListItemClick(event, index)
+                            HandleCumRap(item.maCumRap)
+                          }}
+                        >
+                          <ListItemAvatar>
+                            <Avatar
+                              variant="square"
+                              src={item.hinhAnh}
+                              alt={item.tenCumRap}
+                              sx={{ width: 60, height: 70 }}
+                            />
+                          </ListItemAvatar>
+                          <ListItemText
+                            primary={
+                              <>
+                                <Typography variant="h6">
+                                  {item.tenCumRap}
+                                </Typography>
+                              </>
+                            }
+                            secondary={item.diaChi}
+                          />
+                        </ListItem>
+                        <Divider
+                          sx={{
+                            mt: 2,
+                            mb: 2
+                          }}
+                        />
+                      </>
+                    )
+                  })}
+                </List>
+              </div>
+
+              <div className="schedule">
+                {phimTheoCumRap?.map((item, index) => {
+                  return (
+                    <Accordion
+                      key={index}
+                      expanded={expanded === index}
+                      onChange={handleChange(index)}
+                    >
+                      <AccordionSummary
+                        expandIcon={<KeyboardArrowDownIcon />}
+                        aria-controls="panel1a-content"
+                        id="panel1a-header"
+                      >
+                        <Box
+                          key={index}
+                          sx={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '10px'
+                            // mb: 1,
+                            // pt: 1
+                          }}
+                        >
+                          <Avatar
+                            variant="square"
+                            src={item.hinhAnh}
+                            sx={{ width: 60, height: 70 }}
+                          />
+                          <Box>
+                            <Typography variant="h6">{item.tenPhim}</Typography>
+                            <Typography variant="sub">
+                              {randomDuration()} minutes
+                            </Typography>
+                            <Box
+                              component="div"
+                              sx={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '5px'
+                              }}
+                            >
+                              <img
+                                src={LogoImb}
+                                alt="imb"
+                                style={{
+                                  width: '2rem',
+                                  height: '2rem'
+                                }}
+                              />
+                              <Typography variant="sub">
+                                {randomNumber()}++
+                              </Typography>
+                            </Box>
+                          </Box>
+                        </Box>
+                      </AccordionSummary>
+                      <AccordionDetails>
+                        <Box
+                          sx={{
+                            display: 'flex',
+                            gap: '10px'
+                          }}
+                        >
+                          {item.lstLichChieuTheoPhim
+                            ?.slice(0, 3)
+                            .map((item, index) => {
+                              return (
+                                <OutlineButton key={index}>
+                                  <Typography variant="sub2" fontWeight={200}>
+                                    {format(
+                                      `hh:mm`,
+                                      new Date(item.ngayChieuGioChieu)
+                                    )}
+                                  </Typography>
+                                </OutlineButton>
+                              )
+                            })}
+                        </Box>
+                      </AccordionDetails>
+                      {/* <Divider widthfull /> */}
+                    </Accordion>
+                  )
+                })}
+              </div>
+            </div>
+          </Paper>
+        </Box>
       </div>
       {/* mobile */}
 
@@ -161,6 +313,9 @@ const Booking = ({ logo }) => {
                   </AccordionSummary>
                   <AccordionDetails>
                     {phimTheoCumRap?.map((item, index) => {
+                      // const scheduleMovie = item.lstLichChieuTheoPhim?.filter(
+                      //   movie => new Date(movie.ngayChieuGioChieu) > today
+                      // )
                       return (
                         <>
                           <Box
@@ -205,18 +360,20 @@ const Booking = ({ logo }) => {
                           </Box>
                           <Box
                             sx={{
-                              width: '550px',
                               display: 'flex',
                               gap: '10px',
                               mb: 3
                             }}
                           >
                             {item.lstLichChieuTheoPhim
-                              ?.slice(0, 10)
+                              ?.slice(0, 4)
                               .map((item, index) => {
                                 return (
                                   <OutlineButton key={index}>
-                                    11:11
+                                    {format(
+                                      `hh:mm`,
+                                      new Date(item.ngayChieuGioChieu)
+                                    )}
                                   </OutlineButton>
                                 )
                               })}
