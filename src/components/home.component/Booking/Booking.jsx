@@ -14,6 +14,9 @@ import {
   Typography
 } from '@mui/material'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
+import { randomDuration, randomNumber } from 'src/utils/helper'
+import LogoImb from 'src/assets/img/imdb-logo.png'
+import { OutlineButton } from 'src/components/button/Button'
 
 const Booking = ({ logo }) => {
   const dispatch = useDispatch()
@@ -45,6 +48,12 @@ const Booking = ({ logo }) => {
     phimTheoCumRap = cumRap[0]?.danhSachPhim
   }
 
+  console.log('phim theo cum rap:', phimTheoCumRap)
+
+  const [expanded, setExpanded] = useState(false)
+  const handleChange = panel => (event, isExpanded) => {
+    setExpanded(isExpanded ? panel : false)
+  }
   return (
     <>
       <div className="container booking-table ">
@@ -125,32 +134,97 @@ const Booking = ({ logo }) => {
           >
             {cinemaByBrand[0]?.lstCumRap.map((item, index) => {
               return (
-                <Accordion key={index}>
+                <Accordion
+                  key={index}
+                  expanded={expanded === index}
+                  onChange={handleChange(index)}
+                >
                   <AccordionSummary
                     expandIcon={<KeyboardArrowDownIcon />}
                     aria-controls="panel1a-content"
                     id="panel1a-header"
+                    onClick={() => {
+                      HandleCumRap(item.maCumRap)
+                    }}
                   >
                     <Box
                       sx={{
-                        // width: '100%',
-                        // height: '100%',
                         display: 'flex',
                         alignItems: 'center',
                         gap: '10px'
                         // justifyContent: 'center'
                       }}
                     >
-                      <Avatar alt="Remy Sharp" src={item.hinhAnh} />
-                      <Typography>{item.tenCumRap}</Typography>
+                      <Avatar alt="Remy Sharp" m={0} src={item.hinhAnh} />
+                      <Typography variant="h5">{item.tenCumRap}</Typography>
                     </Box>
                   </AccordionSummary>
                   <AccordionDetails>
-                    <Typography>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Suspendisse malesuada lacus ex, sit amet blandit leo
-                      lobortis eget.
-                    </Typography>
+                    {phimTheoCumRap?.map((item, index) => {
+                      return (
+                        <>
+                          <Box
+                            key={index}
+                            sx={{
+                              display: 'flex',
+                              alignItems: 'center',
+                              gap: '10px',
+                              mb: 2,
+                              pt: 2
+                            }}
+                          >
+                            <Avatar variant="square" src={item.hinhAnh} />
+                            <Box>
+                              <Typography variant="h6" color="error">
+                                {item.tenPhim}
+                              </Typography>
+                              <Typography variant="sub">
+                                {randomDuration()} minutes
+                              </Typography>
+                              <Box
+                                component="div"
+                                sx={{
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  gap: '5px'
+                                }}
+                              >
+                                <img
+                                  src={LogoImb}
+                                  alt="imb"
+                                  style={{
+                                    width: '2rem',
+                                    height: '2rem'
+                                  }}
+                                />
+                                <Typography variant="sub">
+                                  {randomNumber()}++
+                                </Typography>
+                              </Box>
+                            </Box>
+                          </Box>
+                          <Box
+                            sx={{
+                              width: '550px',
+                              display: 'flex',
+                              gap: '10px',
+                              mb: 3
+                            }}
+                          >
+                            {item.lstLichChieuTheoPhim
+                              ?.slice(0, 10)
+                              .map((item, index) => {
+                                return (
+                                  <OutlineButton key={index}>
+                                    11:11
+                                  </OutlineButton>
+                                )
+                              })}
+                          </Box>
+                          <Divider widthfull />
+                        </>
+                      )
+                    })}
                   </AccordionDetails>
                 </Accordion>
               )
