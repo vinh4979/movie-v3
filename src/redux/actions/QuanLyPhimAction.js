@@ -2,6 +2,7 @@ import { quanLyPhimService } from 'src/services/QuanLyPhimService'
 import {
   LAY_DANH_SACH_BANNER,
   LAY_DANH_SACH_PHIM,
+  LAY_THONG_TIN_LICH_CHIEU_PHIM,
   THONG_TIN_PHIM_THEO_ID
 } from 'src/redux/type'
 
@@ -61,3 +62,5 @@ export const layThongTinPhimTheoMaPhimAction = id => {
     }
   }
 }
+
+

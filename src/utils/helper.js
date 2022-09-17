@@ -54,3 +54,23 @@ export const isEmail = value =>
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
     value
   )
+
+// fake duration movie
+export const randomDuration = () =>
+  Math.trunc(Math.random() * (200 - 120) + 120)
+
+//fake imb movie
+export const randomNumber = () => Math.trunc(Math.random() * (8 - 5) + 5)
+
+// get today
+export const today = (minusDay = 11) => {
+  const toDay = new Date()
+  toDay.setMonth(toDay.getMonth() - minusDay)
+  return toDay
+}
+
+export const splitDateTime = ngayChieuGioChieu => {
+  return ngayChieuGioChieu.split('T')
+}
+
+console.log(splitDateTime('2019-01-02T14:10:00'))

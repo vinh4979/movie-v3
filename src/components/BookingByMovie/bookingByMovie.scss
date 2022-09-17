@@ -1,0 +1,117 @@
+@use '../../scss/' as *;
+
+.bookingByMovie-container {
+  display: grid;
+  grid-template-columns: 10% 90%;
+  grid-template-rows: auto;
+
+  height: 800px;
+  // width: auto;
+  border: 1px solid gray;
+  border-radius: 5px;
+
+  @include mobile {
+    display: none;
+  }
+  .booking-container-cinemainf {
+    display: grid;
+    grid-template-columns: 50% auto;
+    grid-template-rows: auto;
+  }
+
+  .brandLogo {
+    border-right: 1px solid grey;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+    .logoItem {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      // height: 125px;
+      .item {
+        border-radius: 50%;
+        width: 70px;
+        height: 70px;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+        &:hover {
+          box-shadow: 0px 0px 22px -3px #dbcccc;
+        }
+      }
+    }
+  }
+  .cinema {
+    overflow: auto;
+    width: 100%;
+    height: 100%;
+    // padding-top: 20px;
+    padding: 20px 20px 0 20px;
+    border-right: 1px solid grey;
+
+    .cinemaItem {
+      display: flex;
+      width: auto;
+      height: 120px;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+  .schedule {
+    overflow: auto;
+    padding: 20px 20px 0 20px;
+    // padding: 0 !important;
+    // height: 100%;
+  }
+}
+.booking-table {
+  // background-color: white;
+}
+
+.booking-container > div {
+  // background-color: blue;
+  // margin: 5px 10px;
+}
+
+// repnsive for mobile
+
+.mobile_booking_container {
+  display: none;
+  @include mobile {
+    margin: 0 16px;
+    display: block;
+    .mobile_brandLogo {
+      margin: 30px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      // border: 1px solid red;
+
+      .mobile_logoItem {
+        // border: 1px solid blue;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .brand_item {
+          width: 40px;
+          height: 40px;
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+    }
+  }
+}

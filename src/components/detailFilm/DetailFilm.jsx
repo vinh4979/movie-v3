@@ -1,7 +1,7 @@
 import React from 'react'
 import { CardBtn } from '../button/Button'
 import './DetailFilm.scss'
-
+import '@tsamantanis/react-glassmorphism/dist/index.css'
 const DetailFilm = props => {
   const item = props.detail
   return (

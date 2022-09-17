@@ -14,6 +14,7 @@ export const layThongTinRapAction = () => {
         type: LAY_DANH_SACH_LOGO,
         cinemaList: result.data.content
       })
+      console.log('result', result.data.content)
     } catch (err) {
       console.log('layThongTinRapAction err:', err)
     }
@@ -61,6 +62,7 @@ export const LayThongTinLichChieuPhimAction = maPhim => {
         type: GET_SEARCH_MOIVE,
         movieSearch: result.data.content
       })
+      console.log('Laythontinlichchieuphimaction SUCCESS', result.data.content)
     } catch (err) {
       console.log(' LayThongTinLichChieuPhimAction err:', err)
     }

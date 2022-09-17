@@ -1,7 +1,9 @@
+import produce from 'immer'
 import {
   LAY_DANH_SACH_BANNER,
   LAY_DANH_SACH_PHIM,
-  THONG_TIN_PHIM_THEO_ID
+  THONG_TIN_PHIM_THEO_ID,
+  LAY_THONG_TIN_LICH_CHIEU_PHIM
 } from '../type'
 
 const stateDefault = {
