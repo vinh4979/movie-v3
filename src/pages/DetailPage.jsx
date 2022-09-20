@@ -10,6 +10,7 @@ import Description from 'src/components/Description/Description'
 
 export default function DetailPage() {
   const { id } = useParams()
+
   const dispatch = useDispatch()
   const { movieById } = useSelector(state => state.QuanLyPhimReducer)
   console.log('params id:', movieById)

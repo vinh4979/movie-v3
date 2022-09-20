@@ -1,8 +1,23 @@
-import { Button, Stack } from '@mui/material'
+import {
+  Avatar,
+  Box,
+  Divider,
+  Menu,
+  MenuItem,
+  Stack,
+  Typography
+} from '@mui/material'
 import React, { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { useLocation } from 'react-router-dom'
+// import { useLocation } from 'react-router-dom'
 import './header.scss'
+import { CustombtnRed, CustombtnWhite } from '../button/Button'
+import { useHistory } from 'react-router-dom'
+import { useState } from 'react'
+import { userLogin } from 'src/config/configLocalStorage'
+import PersonIcon from '@mui/icons-material/Person'
+import { useDispatch } from 'react-redux'
+import { USER_LOGOUT_ALERT, WARNING } from 'src/redux/type'
 
 const headerNav = [
   {
@@ -11,18 +26,47 @@ const headerNav = [
   },
   {
     display: 'Movies',
-    path: '/movie'
+    path: '/'
   },
   {
-    display: 'TV Series',
-    path: '/tv'
+    display: 'Booking',
+    path: '/'
   }
 ]
 
 const Header = () => {
-  const { pathname } = useLocation()
+  // const { pathname } = useLocation()
   const headerRef = useRef(null)
-  const active = headerNav.findIndex(e => e.path === pathname)
+  const history = useHistory()
+  const dispatch = useDispatch()
+  // const active = headerNav.findIndex(e => e.path === pathname)
+  const [active, setActive] = useState(0)
+  const handleActive = index => {
+    setActive(index)
+  }
+
+  const user = userLogin
+
+  const [anchorEl, setAnchorEl] = React.useState(null)
+  const open = Boolean(anchorEl)
+  const handleClick = event => {
+    setAnchorEl(event.currentTarget)
+  }
+  const handleClose = () => {
+    setAnchorEl(null)
+  }
+
+  const handleLogout = () => {
+    // console.log('handleLogout')
+    setAnchorEl(null)
+    dispatch({
+      type: USER_LOGOUT_ALERT,
+      payLoad: {
+        type: WARNING,
+        message: 'Do you want to logout?'
+      }
+    })
+  }
 
   useEffect(() => {
     const shrinkHeader = () => {
@@ -39,10 +83,8 @@ const Header = () => {
     return () => {
       window.removeEventListener('scroll', shrinkHeader)
     }
-  }, [])
+  }, [user])
 
-  // console.log('pathname:', pathname)
-  // console.log('active', active)
   return (
     <div ref={headerRef} className="header">
       <div className="header__wrap container">
@@ -54,19 +96,80 @@ const Header = () => {
         <ul className="header__nav">
           {headerNav.map((item, index) => (
             <li key={index} className={`${index === active ? 'active' : ''}`}>
-              <Link to={item.path}>{item.display}</Link>
+              {/* <Link to={item.path}>{item.display}</Link> */}
+              <Typography
+                onClick={() => handleActive(index)}
+                variant="h5"
+                fontWeight={900}
+              >
+                {item.display}
+              </Typography>
             </li>
           ))}
         </ul>
         <div className="__sign">
-          <Stack spacing={2} direction="row">
-            <Button color="error" variant="contained">
-              <Link to="/signin">Sign In</Link>
-            </Button>
-            <Button color="error" variant="outlined">
-              <Link to="/signup">Sign Up</Link>
-            </Button>
-          </Stack>
+          {!user ? (
+            <Stack spacing={2} direction="row">
+              <CustombtnRed
+                onClick={() => {
+                  history.push('/signin')
+                }}
+              >
+                Sign in
+              </CustombtnRed>
+              <CustombtnWhite
+                onClick={() => {
+                  history.push('/signup')
+                }}
+              >
+                Sign up
+              </CustombtnWhite>
+            </Stack>
+          ) : (
+            <>
+              <Box
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '10px'
+                }}
+                id="demo-positioned-button"
+                aria-controls={open ? 'demo-positioned-menu' : undefined}
+                aria-haspopup="true"
+                aria-expanded={open ? 'true' : undefined}
+                onClick={handleClick}
+              >
+                <Avatar>
+                  <PersonIcon />
+                </Avatar>
+
+                <Box>
+                  <Typography variant="h6" fontWeight={900}>
+                    {user.taiKhoan}
+                  </Typography>
+                </Box>
+              </Box>
+              <Menu
+                id="demo-positioned-menu"
+                aria-labelledby="demo-positioned-button"
+                anchorEl={anchorEl}
+                open={open}
+                onClose={handleClose}
+                anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'left'
+                }}
+                // transformOrigin={{
+                //   vertical: 'top',
+                //   horizontal: 'left'
+                // }}
+              >
+                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                <MenuItem onClick={handleClose}>My account</MenuItem>
+                <MenuItem onClick={handleLogout}>Logout</MenuItem>
+              </Menu>
+            </>
+          )}
         </div>
       </div>
     </div>

@@ -22,7 +22,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import { randomDuration, randomNumber } from 'src/utils/helper'
 import LogoImb from 'src/assets/img/imdb-logo.png'
 import { OutlineButton } from 'src/components/button/Button'
-import AcUnitIcon from '@mui/icons-material/AcUnit'
+import { useHistory } from 'react-router-dom'
 
 const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
   padding: theme.spacing(2),
@@ -31,6 +31,7 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 
 const Booking = ({ logo }) => {
   const dispatch = useDispatch()
+  const history = useHistory()
   const [chooseCinema, setChooseCinema] = useState('BHDStar')
   const [flimByBrandCinema, setFlimByBrandCinema] = useState(
     'bhd-star-cineplex-bitexco'
@@ -236,7 +237,12 @@ const Booking = ({ logo }) => {
                             ?.slice(0, 3)
                             .map((item, index) => {
                               return (
-                                <OutlineButton key={index}>
+                                <OutlineButton
+                                  key={index}
+                                  onClick={() => {
+                                    history.push(`/booking/${item.maLichChieu}`)
+                                  }}
+                                >
                                   <Typography variant="sub2" fontWeight={200}>
                                     {format(
                                       `hh:mm`,
@@ -369,7 +375,14 @@ const Booking = ({ logo }) => {
                               ?.slice(0, 4)
                               .map((item, index) => {
                                 return (
-                                  <OutlineButton key={index}>
+                                  <OutlineButton
+                                    key={index}
+                                    onClick={() =>
+                                      history.push(
+                                        `booking/:${item.maLichChieu}`
+                                      )
+                                    }
+                                  >
                                     {format(
                                       `hh:mm`,
                                       new Date(item.ngayChieuGioChieu)

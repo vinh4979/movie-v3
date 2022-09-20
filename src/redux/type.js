@@ -15,5 +15,18 @@ export const OPEN_MODAL = 'OPEN_MODAL'
 export const CLOSE_MODAL = 'CLOSE_MODAL'
 
 export const SUCCESS = 'success'
-export const WARING = 'warning'
+export const WARNING = 'warning'
 export const ERROR = 'error'
+export const CONFIRM = 'CONFIRM'
+
+export const GET_PARAMS = 'GET_PARAMS'
+export const GET_ROOM_CINEMA = 'GET_ROOM_CINEMA'
+export const CHOOSEN_SEAT = 'CHOOSEN_SEAT'
+
+export const USER_BOOKING_FAIL = 'USER_BOOKING_FAIL'
+export const USER_BOOKING_SUCCESS = 'USER_BOOKING_SUCCESS'
+export const REQUITE_CHOOSING_SEAT = 'REQUITE_CHOOSING_SEAT'
+export const USER_BOOKING_WARNING = 'USER_BOOKING_WARNING'
+
+export const USER_LOGOUT_ALERT = 'USER_LOGOUT_ALERT'
+export const USER_LOGOUT_SUCCESS = 'USER_LOGOUT_SUCCESS'

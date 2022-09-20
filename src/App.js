@@ -2,9 +2,15 @@ import './App.scss'
 import { BrowserRouter, Route } from 'react-router-dom'
 import Header from './components/header/Header'
 import Footer from './components/footer/Footer'
-import ConfigRoutes from './config/configRoutes'
 import { createTheme, CssBaseline, ThemeProvider } from '@mui/material'
 import AlertModal from './components/alertModal/AlertModal'
+import { Switch } from 'react-router-dom'
+import SigninPage from './pages/SigninPage'
+import SignupPage from './pages/SignupPage'
+import BookingPage from './pages/BookingPage'
+import DetailPage from './pages/DetailPage'
+import HomePage from './pages/HomePage'
+import { Redirect } from 'react-router-dom'
 
 function App() {
   const theme = createTheme({
@@ -15,17 +21,36 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
+
       <BrowserRouter>
-        <Route
-          render={props => (
-            <>
-              <AlertModal />
-              <Header {...props} />
-              <ConfigRoutes />
-              <Footer />
-            </>
-          )}
-        />
+        <AlertModal />
+        <Switch>
+          <Route path="/signin" exact>
+            <Header />
+            <SigninPage />
+          </Route>
+          <Route path="/signup" exact>
+            <Header />
+            <SignupPage />
+          </Route>
+          <Route path="/booking/:id" exact>
+            <Header />
+            <BookingPage />
+          </Route>
+          <Route path="/detail/:id" exact>
+            <Header />
+            <DetailPage />
+            <Footer />
+          </Route>
+          <Route path="/" exact>
+            <Header />
+            <HomePage />
+            <Footer />
+          </Route>
+          <Route path="*" exact>
+            <Redirect to="/home" />
+          </Route>
+        </Switch>
       </BrowserRouter>
     </ThemeProvider>
   )

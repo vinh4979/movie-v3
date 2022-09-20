@@ -79,8 +79,7 @@ const SignupPage = () => {
     control,
     handleSubmit,
     getValues,
-    formState: { errors },
-    setError
+    formState: { errors }
   } = useForm({
     defaultValues: {
       taiKhoan: '',
