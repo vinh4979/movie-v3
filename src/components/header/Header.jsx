@@ -1,12 +1,4 @@
-import {
-  Avatar,
-  Box,
-  Divider,
-  Menu,
-  MenuItem,
-  Stack,
-  Typography
-} from '@mui/material'
+import { Avatar, Box, Menu, MenuItem, Stack, Typography } from '@mui/material'
 import React, { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 // import { useLocation } from 'react-router-dom'
@@ -16,7 +8,7 @@ import { useHistory } from 'react-router-dom'
 import { useState } from 'react'
 import { userLogin } from 'src/config/configLocalStorage'
 import PersonIcon from '@mui/icons-material/Person'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { USER_LOGOUT_ALERT, WARNING } from 'src/redux/type'
 
 const headerNav = [
@@ -44,8 +36,7 @@ const Header = () => {
   const handleActive = index => {
     setActive(index)
   }
-
-  const user = userLogin
+  const { authUser } = useSelector(state => state.QuanLyNguoiDungReducer)
 
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
@@ -83,7 +74,7 @@ const Header = () => {
     return () => {
       window.removeEventListener('scroll', shrinkHeader)
     }
-  }, [user])
+  }, [])
 
   return (
     <div ref={headerRef} className="header">
@@ -108,7 +99,7 @@ const Header = () => {
           ))}
         </ul>
         <div className="__sign">
-          {!user ? (
+          {!authUser ? (
             <Stack spacing={2} direction="row">
               <CustombtnRed
                 onClick={() => {
@@ -145,7 +136,7 @@ const Header = () => {
 
                 <Box>
                   <Typography variant="h6" fontWeight={900}>
-                    {user.taiKhoan}
+                    {authUser.taiKhoan}
                   </Typography>
                 </Box>
               </Box>

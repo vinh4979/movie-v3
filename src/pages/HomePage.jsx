@@ -8,7 +8,8 @@ import { layDanhSachPhimAction } from 'src/redux/actions/QuanLyPhimAction'
 import Booking from 'src/components/home.component/Booking/Booking'
 import { layThongTinRapAction } from '../redux/actions/QuanLyRapAction'
 import { banner } from 'src/utils/sildeData'
-import AlertModal from 'src/components/alertModal/AlertModal'
+import { userLogin } from 'src/config/configLocalStorage'
+import { GET_AUTH } from 'src/redux/type'
 
 export default function HomePage() {
   const { movieList } = useSelector(state => state.QuanLyPhimReducer)
@@ -18,6 +19,12 @@ export default function HomePage() {
   useEffect(() => {
     dispatch(layDanhSachPhimAction())
     dispatch(layThongTinRapAction())
+    if (userLogin) {
+      dispatch({
+        type: GET_AUTH,
+        payLoad: userLogin
+      })
+    }
   }, [dispatch])
 
   // danh sach flim dang hot

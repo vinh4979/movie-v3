@@ -1,7 +1,7 @@
 import { TOKEN } from 'src/config/configApi'
 import { USER_ACCOUNT } from 'src/config/configLocalStorage'
 import { quanLyNguoiDungService } from 'src/services/QuanLyNguoiDungService'
-import { OPEN_MODAL } from '../type'
+import { GET_AUTH, OPEN_MODAL } from '../type'
 
 // func login
 export const dangNhapAction = body => {
@@ -10,6 +10,10 @@ export const dangNhapAction = body => {
       const result = await quanLyNguoiDungService.dangNhap(body)
       localStorage.setItem(USER_ACCOUNT, JSON.stringify(result.data.content))
       localStorage.setItem(TOKEN, result.data.content.accessToken)
+      dispatch({
+        type: GET_AUTH,
+        payLoad: result.data.content
+      })
       dispatch({
         type: OPEN_MODAL,
         payLoad: 'Signin successfully'

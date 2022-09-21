@@ -14,6 +14,7 @@ import {
 import ErrorIcon from '../animationIcon/errorIcon/ErrorIcon'
 import SuccessIcon from '../animationIcon/successIcon/SuccessIcon'
 import WarningIcon from '../animationIcon/warningIcon/WarningIcon'
+import { USER_LOGOUT } from '../../redux/type'
 
 const StyledModal = styled(Modal)(({ theme }) => ({
   display: 'flex',
@@ -111,26 +112,62 @@ const AlertModal = () => {
             >
               Cancle
             </Button> */}
-            {(alert.type === WARNING && alert.message !== logoutMessage) ||
-              (alert.type === SUCCESS &&
-                alert.message !== bookingSuccessMessage && (
-                  <Button
-                    variant="contained"
-                    color="success"
-                    width={100}
-                    sx={{
-                      width: '100px',
-                      color: 'white'
-                    }}
-                    onClick={() =>
-                      dispatch({
-                        type: CLOSE_MODAL
-                      })
-                    }
-                  >
-                    Ok
-                  </Button>
-                ))}
+            {/* {alert.type === WARNING && alert.message !== bookingSuccessMessage && (
+              <Button
+                variant="contained"
+                color="success"
+                width={100}
+                sx={{
+                  width: '100px',
+                  color: 'white'
+                }}
+                onClick={() =>
+                  dispatch({
+                    type: CLOSE_MODAL
+                  })
+                }
+              >
+                Ok
+              </Button>
+            )} */}
+
+            {alert.type === WARNING && alert.message !== logoutMessage && (
+              <Button
+                variant="contained"
+                color="success"
+                width={100}
+                sx={{
+                  width: '100px',
+                  color: 'white'
+                }}
+                onClick={() =>
+                  dispatch({
+                    type: CLOSE_MODAL
+                  })
+                }
+              >
+                Ok
+              </Button>
+            )}
+
+            {alert.type === SUCCESS && alert.message !== bookingSuccessMessage && (
+              <Button
+                variant="contained"
+                color="success"
+                width={100}
+                sx={{
+                  width: '100px',
+                  color: 'white'
+                }}
+                onClick={() =>
+                  dispatch({
+                    type: CLOSE_MODAL
+                  })
+                }
+              >
+                Ok
+              </Button>
+            )}
 
             {alert.type === CONFIRM && (
               <>
@@ -198,6 +235,9 @@ const AlertModal = () => {
                         type: SUCCESS,
                         message: 'Log out successfully'
                       }
+                    })
+                    dispatch({
+                      type: USER_LOGOUT
                     })
                     history.push('/')
                     localStorage.clear()
