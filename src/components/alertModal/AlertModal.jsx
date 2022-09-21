@@ -11,7 +11,7 @@ import {
   USER_LOGOUT_SUCCESS,
   WARNING
 } from 'src/redux/type'
-import ErrorIcon from '../animationIcon/errorIcon/ErrorIcon'
+// import ErrorIcon from '../animationIcon/errorIcon/ErrorIcon'
 import SuccessIcon from '../animationIcon/successIcon/SuccessIcon'
 import WarningIcon from '../animationIcon/warningIcon/WarningIcon'
 import { USER_LOGOUT } from '../../redux/type'
