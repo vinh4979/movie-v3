@@ -1,4 +1,12 @@
-import { Avatar, Box, Menu, MenuItem, Stack, Typography } from '@mui/material'
+import {
+  Avatar,
+  Box,
+  IconButton,
+  Menu,
+  MenuItem,
+  Stack,
+  Typography
+} from '@mui/material'
 import React, { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 // import { useLocation } from 'react-router-dom'
@@ -9,19 +17,21 @@ import { useState } from 'react'
 import PersonIcon from '@mui/icons-material/Person'
 import { useDispatch, useSelector } from 'react-redux'
 import { USER_LOGOUT_ALERT, WARNING } from 'src/redux/type'
+import MenuIcon from '@mui/icons-material/Menu'
+import { HashLink } from 'react-router-hash-link'
 
 const headerNav = [
   {
     display: 'Home',
-    path: '/'
+    path: '#homepage'
   },
   {
     display: 'Movies',
-    path: '/'
+    path: '#homepage__movielist'
   },
   {
     display: 'Booking',
-    path: '/'
+    path: '#homepage__schedule'
   }
 ]
 
@@ -38,12 +48,18 @@ const Header = () => {
   const { authUser } = useSelector(state => state.QuanLyNguoiDungReducer)
 
   const [anchorEl, setAnchorEl] = React.useState(null)
+  const [anchorEl2, setAnchorEl2] = React.useState(null)
   const open = Boolean(anchorEl)
+  const open2 = Boolean(anchorEl2)
   const handleClick = event => {
     setAnchorEl(event.currentTarget)
   }
+  const handleClick2 = event => {
+    setAnchorEl2(event.currentTarget)
+  }
   const handleClose = () => {
     setAnchorEl(null)
+    setAnchorEl2(null)
   }
 
   const handleLogout = () => {
@@ -85,19 +101,21 @@ const Header = () => {
         </div>
         <ul className="header__nav">
           {headerNav.map((item, index) => (
-            <li key={index} className={`${index === active ? 'active' : ''}`}>
-              {/* <Link to={item.path}>{item.display}</Link> */}
-              <Typography
-                onClick={() => handleActive(index)}
-                variant="h5"
-                fontWeight={900}
-              >
-                {item.display}
-              </Typography>
-            </li>
+            <HashLink key={index} smooth to={item.path}>
+              <li className={`${index === active ? 'active' : ''}`}>
+                {/* <Link to={item.path}>{item.display}</Link> */}
+                <Typography
+                  onClick={() => handleActive(index)}
+                  variant="h5"
+                  fontWeight={900}
+                >
+                  {item.display}
+                </Typography>
+              </li>
+            </HashLink>
           ))}
         </ul>
-        <div className="__sign">
+        <div className="header__sign">
           {!authUser ? (
             <Stack spacing={2} direction="row">
               <CustombtnRed
@@ -160,6 +178,55 @@ const Header = () => {
               </Menu>
             </>
           )}
+        </div>
+
+        <div className="header__sign__mobile">
+          <IconButton
+            size="large"
+            id="demo-positioned-button-2"
+            aria-controls={open2 ? 'demo-positioned-menu-2' : undefined}
+            aria-haspopup="true"
+            aria-expanded={open2 ? 'true' : undefined}
+            onClick={handleClick2}
+          >
+            <MenuIcon fontSize="large" />
+          </IconButton>
+          <Menu
+            id="demo-positioned-menu-2"
+            aria-labelledby="demo-positioned-button-2"
+            anchorEl={anchorEl2}
+            open={open2}
+            onClose={handleClose}
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'right'
+            }}
+          >
+            {!authUser ? (
+              <>
+                <MenuItem
+                  onClick={() => {
+                    history.push('/signin')
+                  }}
+                >
+                  Sign In
+                </MenuItem>
+                <MenuItem
+                  onClick={() => {
+                    history.push('/signup')
+                  }}
+                >
+                  Sign Up
+                </MenuItem>
+              </>
+            ) : (
+              <>
+                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                <MenuItem onClick={handleClose}>My account</MenuItem>
+                <MenuItem onClick={handleLogout}>Logout</MenuItem>
+              </>
+            )}
+          </Menu>
         </div>
       </div>
     </div>

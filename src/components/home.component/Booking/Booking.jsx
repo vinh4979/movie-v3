@@ -75,7 +75,7 @@ const Booking = ({ logo }) => {
 
   return (
     <>
-      <div className="container booking-table ">
+      <div className="container booking-table " id="homepage__schedule">
         <Box
           sx={{
             margin: '0 32px'

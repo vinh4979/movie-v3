@@ -1,6 +1,7 @@
 import {
   CLOSE_MODAL,
   REQUITE_CHOOSING_SEAT,
+  SIGNIN_SUCCESS,
   SUCCESS,
   USER_BOOKING_FAIL,
   USER_BOOKING_SUCCESS,
@@ -21,7 +22,7 @@ const stateDefault = {
 
 export const StateReducer = (state = stateDefault, action) => {
   switch (action.type) {
-    case OPEN_MODAL: {
+    case SIGNIN_SUCCESS: {
       state.stateModal = true
       state.alert.message = action.payLoad
       state.alert.type = SUCCESS

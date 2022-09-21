@@ -15,6 +15,7 @@ import {
 import SuccessIcon from '../animationIcon/successIcon/SuccessIcon'
 import WarningIcon from '../animationIcon/warningIcon/WarningIcon'
 import { USER_LOGOUT } from '../../redux/type'
+import ErrorIcon from '../animationIcon/errorIcon/ErrorIcon'
 
 const StyledModal = styled(Modal)(({ theme }) => ({
   display: 'flex',
@@ -23,17 +24,22 @@ const StyledModal = styled(Modal)(({ theme }) => ({
   border: 'none'
 }))
 const BoxContainer = styled(Box)(({ theme }) => ({
-  backgroundColor: 'rgb(192,192,192)',
+  backgroundColor: 'rgb(192,192,192, 0.9)',
   borderRadius: '10px',
   width: 550,
   height: 400,
-  transform: 'translate(0, -50%)',
-  padding: '30px'
+  padding: '30px',
+  [theme.breakpoints.down('sm')]: {
+    width: 450,
+    height: 330
+  }
 }))
 
 const bookingSuccessMessage =
-  'You got it! booking information will be send via your Email'
+  'You got it! Your ticket information will be sent to your Email'
 const logoutMessage = 'Do you want to logout?'
+const loginSuccessMessage = 'Signin successfully'
+const logoutSuccessMessage = 'Logout successfully!'
 const AlertModal = () => {
   const dispatch = useDispatch()
   const history = useHistory()
@@ -59,7 +65,6 @@ const AlertModal = () => {
         giaVe: item.giaVe
       })
     })
-    console.log('danh sach ve', roomCinema)
     dispatch(
       datVeAction({
         maLichChieu: roomCinema.thongTinPhim.maLichChieu,
@@ -84,53 +89,40 @@ const AlertModal = () => {
           {alert.type === SUCCESS && <SuccessIcon />}
           {(alert.type === WARNING || alert.type === CONFIRM) && (
             <WarningIcon />
+            // <SuccessIcon />
+            // <ErrorIcon />
           )}
 
           {/*  <ErrorIcon /> */}
           {/* <SuccessIcon /> */}
-          <Typography textAlign="center" color="black" variant="h5" mb={1}>
-            {alert.message}
-          </Typography>
-          <Typography textAlign="center" color="black" variant="h6" mb={2}>
-            {alert.message2}
-          </Typography>
           <Box
             sx={{
-              // border: '1px solid red',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center'
+            }}
+          >
+            <Typography textAlign="center" color="black" variant="h6" mb={1}>
+              {alert.message}
+            </Typography>
+            <Typography
+              sx={{
+                textAlign: 'center'
+              }}
+              color="black"
+              variant="sub"
+              mb={2}
+            >
+              {alert.message2}
+            </Typography>
+          </Box>
+          <Box
+            sx={{
               display: 'flex',
               justifyContent: 'center',
               gap: 5
             }}
           >
-            {/* <Button
-              variant="contained"
-              color="error"
-              sx={{
-                width: '100px',
-                color: 'white'
-              }}
-            >
-              Cancle
-            </Button> */}
-            {/* {alert.type === WARNING && alert.message !== bookingSuccessMessage && (
-              <Button
-                variant="contained"
-                color="success"
-                width={100}
-                sx={{
-                  width: '100px',
-                  color: 'white'
-                }}
-                onClick={() =>
-                  dispatch({
-                    type: CLOSE_MODAL
-                  })
-                }
-              >
-                Ok
-              </Button>
-            )} */}
-
             {alert.type === WARNING && alert.message !== logoutMessage && (
               <Button
                 variant="contained"
@@ -150,7 +142,7 @@ const AlertModal = () => {
               </Button>
             )}
 
-            {alert.type === SUCCESS && alert.message !== bookingSuccessMessage && (
+            {alert.type === SUCCESS && alert.message === logoutSuccessMessage && (
               <Button
                 variant="contained"
                 color="success"
@@ -164,6 +156,26 @@ const AlertModal = () => {
                     type: CLOSE_MODAL
                   })
                 }
+              >
+                Ok
+              </Button>
+            )}
+
+            {alert.type === SUCCESS && alert.message === loginSuccessMessage && (
+              <Button
+                variant="contained"
+                color="success"
+                width={100}
+                sx={{
+                  width: '100px',
+                  color: 'white'
+                }}
+                onClick={() => {
+                  dispatch({
+                    type: CLOSE_MODAL
+                  })
+                  history.push('/')
+                }}
               >
                 Ok
               </Button>
@@ -233,7 +245,7 @@ const AlertModal = () => {
                       type: USER_LOGOUT_SUCCESS,
                       payLoad: {
                         type: SUCCESS,
-                        message: 'Log out successfully'
+                        message: 'Logout successfully!'
                       }
                     })
                     dispatch({
@@ -282,7 +294,7 @@ const AlertModal = () => {
                     history.push('/')
                   }}
                 >
-                  Booking History
+                  History
                 </Button>
               </>
             )}

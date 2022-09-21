@@ -21,7 +21,6 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-
       <BrowserRouter>
         <AlertModal />
         <Switch>
@@ -42,7 +41,7 @@ function App() {
             <DetailPage />
             <Footer />
           </Route>
-          <Route path="/" exact>
+          <Route path="/home" exact>
             <Header />
             <HomePage />
             <Footer />

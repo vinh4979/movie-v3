@@ -14,6 +14,9 @@ export const GET_SEARCH_MOIVE = 'GET_SEARCH_MOIVE'
 export const OPEN_MODAL = 'OPEN_MODAL'
 export const CLOSE_MODAL = 'CLOSE_MODAL'
 
+export const SIGNIN_SUCCESS = 'SIGNIN_SUCCESS'
+export const SIGNIN_FAIL = 'SIGNIN_FAIL'
+
 export const SUCCESS = 'success'
 export const WARNING = 'warning'
 export const ERROR = 'error'

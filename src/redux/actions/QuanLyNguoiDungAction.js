@@ -1,7 +1,7 @@
 import { TOKEN } from 'src/config/configApi'
 import { USER_ACCOUNT } from 'src/config/configLocalStorage'
 import { quanLyNguoiDungService } from 'src/services/QuanLyNguoiDungService'
-import { GET_AUTH, OPEN_MODAL } from '../type'
+import { GET_AUTH, OPEN_MODAL, SIGNIN_SUCCESS } from '../type'
 
 // func login
 export const dangNhapAction = body => {
@@ -15,7 +15,7 @@ export const dangNhapAction = body => {
         payLoad: result.data.content
       })
       dispatch({
-        type: OPEN_MODAL,
+        type: SIGNIN_SUCCESS,
         payLoad: 'Signin successfully'
       })
     } catch (err) {
@@ -37,7 +37,7 @@ export const dangKyAction = body => {
       }
       dispatch(dangNhapAction(bodyLogin))
       dispatch({
-        type: OPEN_MODAL,
+        type: SIGNIN_SUCCESS,
         payLoad: 'Sign up successfully'
       })
     } catch (err) {

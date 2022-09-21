@@ -25,8 +25,8 @@ export default function Ticket({ cineRoom, gheDangDat }) {
         type: REQUITE_CHOOSING_SEAT,
         payLoad: {
           type: WARNING,
-          message: 'Please selecting your seat',
-          message2: 'You may forgot something!'
+          message: 'Please, select your seat!',
+          message2: 'You may forget something!'
         }
       })
     } else {
@@ -34,8 +34,9 @@ export default function Ticket({ cineRoom, gheDangDat }) {
         type: USER_BOOKING_WARNING,
         payLoad: {
           type: CONFIRM,
-          message: 'Ticket will be send to you via Email!',
-          message2: 'Please make sure the information is correct'
+          message: 'Ticket will be sent to your Email!',
+          message2:
+            'Please make sure the information on your ticket is correct!'
         }
       })
     }
@@ -43,9 +44,7 @@ export default function Ticket({ cineRoom, gheDangDat }) {
   return (
     <Box
       sx={{
-        // bgcolor: 'white',
-        width: '70%',
-        height: 'auto'
+        padding: '32px'
       }}
     >
       <Paper
@@ -76,28 +75,30 @@ export default function Ticket({ cineRoom, gheDangDat }) {
           </Box>
           <Divider mb={2} />
           <TicketItem>
-            <Typography>Date:</Typography>
+            <Typography variant={{ xs: 'inherit', sm: 'h6' }}>Date:</Typography>
             <Typography letterSpacing={1} fontWeight={700}>
               {cineRoom?.thongTinPhim.ngayChieu}
             </Typography>
           </TicketItem>
 
           <TicketItem>
-            <Typography>show time:</Typography>
+            <Typography variant={{ xs: 'inherit', sm: 'h6' }}>
+              show time:
+            </Typography>
             <Typography fontWeight={700}>
               {cineRoom?.thongTinPhim.gioChieu}
             </Typography>
           </TicketItem>
 
           <TicketItem>
-            <Typography>Room:</Typography>
+            <Typography variant={{ xs: 'inherit', sm: 'h6' }}>Room:</Typography>
             <Typography fontWeight={700}>
               {cineRoom?.thongTinPhim.tenRap}
             </Typography>
           </TicketItem>
 
           <TicketItem>
-            <Typography>Seat:</Typography>
+            <Typography variant={{ xs: 'inherit', sm: 'h6' }}>Seat:</Typography>
             <Box
               sx={{
                 display: 'flex'
@@ -106,13 +107,17 @@ export default function Ticket({ cineRoom, gheDangDat }) {
               {gheDangDat?.length !== 0 ? (
                 _.sortBy(gheDangDat, ['stt'])?.map((item, index) => {
                   return (
-                    <Typography color={'error'} mr={1} ml={1}>
+                    <Typography color={'error'} variant="h6" mr={1} ml={1}>
                       {item.stt}
                     </Typography>
                   )
                 })
               ) : (
-                <Typography color={'error'} fontWeight={700}>
+                <Typography
+                  color={'error'}
+                  variant={{ xs: 'h6', sm: 'subtitle2' }}
+                  fontWeight={700}
+                >
                   Please choosing your seat!
                 </Typography>
               )}
@@ -120,7 +125,9 @@ export default function Ticket({ cineRoom, gheDangDat }) {
           </TicketItem>
 
           <TicketItem>
-            <Typography>Discount:</Typography>
+            <Typography variant={{ xs: 'subtitle2', sm: 'subtitle2' }}>
+              Discount:
+            </Typography>
             <Typography fontWeight={700}> 0%</Typography>
           </TicketItem>
           <Button

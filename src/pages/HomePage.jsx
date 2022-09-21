@@ -39,7 +39,7 @@ export default function HomePage() {
   return (
     <>
       <HeroSlide bannerList={banner} />
-      <div className="container">
+      <div className="container" id="homepage__movielist">
         {/* trending now */}
         <div className="section mb-3">
           <div className="section__header mb-2">

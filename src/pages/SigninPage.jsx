@@ -126,7 +126,6 @@ export default function SigninPage() {
                     '&:active': {
                       boxShadow: 'none',
                       backgroundColor: 'none'
-                      // borderColor: '#005cbf'
                     },
                     '&:focus': {
                       boxShadow: 'none',

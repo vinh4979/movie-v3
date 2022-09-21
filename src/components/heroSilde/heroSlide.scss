@@ -78,8 +78,9 @@
 
     &__poster {
       flex: 1;
-      @include flex(center, center);
+      @include flex(center, flex-end);
       position: relative;
+      margin-right: 40px;
 
       img {
         width: 400px;

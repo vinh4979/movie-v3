@@ -30,18 +30,11 @@ const BookingPage = () => {
       <Box component="main">
         <Grid>
           <Grid container spacing={2}>
-            <Grid item xs={8}>
+            <Grid item md={8} xs={12}>
               <Seat cineRoom={roomCinema} gheDangDat={gheDangDat} />
             </Grid>
-            <Grid item xs={4}>
-              <Box
-                sx={{
-                  width: '100%',
-                  height: '100%'
-                }}
-              >
-                <Ticket cineRoom={roomCinema} gheDangDat={gheDangDat} />
-              </Box>
+            <Grid item md={4} xs={12}>
+              <Ticket cineRoom={roomCinema} gheDangDat={gheDangDat} />
             </Grid>
           </Grid>
         </Grid>

@@ -12,7 +12,7 @@ import { Pagination, Navigation, Autoplay } from 'swiper'
 
 const HeroSlide = ({ bannerList }) => {
   return (
-    <div className="hero-slide">
+    <div className="hero-slide" id="homepage">
       <Swiper
         modules={[Pagination, Navigation, Autoplay]}
         spaceBetween={50}
@@ -102,7 +102,7 @@ export const TrailerModal = props => {
   return (
     <Modal active={false} id={`modal_${item.maPhim}`}>
       <ModalContent onClose={onClose}>
-        <h1></h1>
+        <h1>Trailer</h1>
         <iframe
           ref={iframe}
           width="100%"

@@ -19,7 +19,25 @@ const SeatItem = styled(({ color, ...other }) => <button {...other} />)({
   width: '30px',
   height: '30px',
   margin: '5px',
-  cursor: 'pointer'
+  cursor: 'pointer',
+  '@media screen and (max-width: 1200px)': {
+    width: '25px',
+    height: '25px',
+    margin: '3px',
+    borderRadius: '3px'
+  },
+  '@media screen and (max-width: 600px)': {
+    width: '20px',
+    height: '20px',
+    margin: '3px',
+    borderRadius: '3px'
+  },
+  '@media screen and (max-width: 400px)': {
+    width: '17px',
+    height: '17px',
+    margin: '3px',
+    borderRadius: '3px'
+  }
 })
 
 const noteSeat = [
@@ -59,7 +77,9 @@ const Seat = ({ cineRoom, gheDangDat }) => {
       <Box
         component="div"
         sx={{
-          width: '100%'
+          width: '100%',
+          height: '100%'
+          // overflow: 'scroll'
         }}
       >
         <Box
@@ -77,7 +97,8 @@ const Seat = ({ cineRoom, gheDangDat }) => {
             alt="cinema"
             sx={{
               width: '70px',
-              height: '80px'
+              height: '80px',
+              borderRadius: '10px'
             }}
           />
           <Box
@@ -106,7 +127,7 @@ const Seat = ({ cineRoom, gheDangDat }) => {
             justifyContent: 'space-around'
           }}
         >
-          <Box component="div" sx={{ width: 600, mb: 5 }}>
+          <Box component="div" sx={{ width: { xs: 300, sm: 600 }, mb: 5 }}>
             <img src={Screen} alt="screen" />
           </Box>
           <Box>

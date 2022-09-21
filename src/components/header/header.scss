@@ -37,7 +37,8 @@
     padding: 0 2rem;
 
     @include mobile {
-      justify-content: center;
+      justify-content: space-between;
+      padding: 0 16px;
     }
   }
 
@@ -87,6 +88,18 @@
       & > * ~ * {
         margin-left: 0;
       }
+    }
+  }
+  .header__sign__mobile {
+    display: none;
+    @include mobile {
+      display: block;
+    }
+  }
+  &__sign {
+    display: block;
+    @include mobile {
+      display: none;
     }
   }
 }
