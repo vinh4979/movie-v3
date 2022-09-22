@@ -68,3 +68,22 @@ export const today = (minusDay = 11) => {
   toDay.setMonth(toDay.getMonth() - minusDay)
   return toDay
 }
+
+// check if date is today
+export const isToday = someDate => {
+  const today = new Date()
+  return (
+    someDate.getDate() === today.getDate() &&
+    someDate.getMonth() === today.getMonth() &&
+    someDate.getFullYear() === today.getFullYear()
+  )
+}
+// check if date is yesterday
+export const isYesterday = someDate => {
+  const today = new Date()
+  return (
+    someDate.getDate() === today.getDate() - 1 &&
+    someDate.getMonth() === today.getMonth() &&
+    someDate.getFullYear() === today.getFullYear()
+  )
+}

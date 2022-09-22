@@ -22,6 +22,9 @@ export const WARNING = 'warning'
 export const ERROR = 'error'
 export const CONFIRM = 'CONFIRM'
 
+export const UPDATE_AUTH = 'UPDATE_AUTH'
+export const SET_AUTH = 'SET_AUTH'
+
 export const GET_PARAMS = 'GET_PARAMS'
 export const GET_ROOM_CINEMA = 'GET_ROOM_CINEMA'
 export const CHOOSEN_SEAT = 'CHOOSEN_SEAT'
@@ -35,3 +38,5 @@ export const GET_AUTH = 'GET_AUTH'
 export const USER_LOGOUT = 'USER_LOGOUT'
 export const USER_LOGOUT_ALERT = 'USER_LOGOUT_ALERT'
 export const USER_LOGOUT_SUCCESS = 'USER_LOGOUT_SUCCESS'
+
+export const GET_PROFILE = 'GET_PROFILE'

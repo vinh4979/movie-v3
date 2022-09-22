@@ -45,7 +45,7 @@ const Header = () => {
   const handleActive = index => {
     setActive(index)
   }
-  const { authUser } = useSelector(state => state.QuanLyNguoiDungReducer)
+  const { auth } = useSelector(state => state.QuanLyNguoiDungReducer)
 
   const [anchorEl, setAnchorEl] = React.useState(null)
   const [anchorEl2, setAnchorEl2] = React.useState(null)
@@ -116,7 +116,7 @@ const Header = () => {
           ))}
         </ul>
         <div className="header__sign">
-          {!authUser ? (
+          {!auth ? (
             <Stack spacing={2} direction="row">
               <CustombtnRed
                 onClick={() => {
@@ -153,7 +153,7 @@ const Header = () => {
 
                 <Box>
                   <Typography variant="h6" fontWeight={900}>
-                    {authUser.taiKhoan}
+                    {auth.taiKhoan}
                   </Typography>
                 </Box>
               </Box>
@@ -172,8 +172,13 @@ const Header = () => {
                 //   horizontal: 'left'
                 // }}
               >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
+                <MenuItem
+                  onClick={() => {
+                    history.push('/profile')
+                  }}
+                >
+                  My account
+                </MenuItem>
                 <MenuItem onClick={handleLogout}>Logout</MenuItem>
               </Menu>
             </>
@@ -202,7 +207,7 @@ const Header = () => {
               horizontal: 'right'
             }}
           >
-            {!authUser ? (
+            {!auth ? (
               <>
                 <MenuItem
                   onClick={() => {
@@ -222,7 +227,13 @@ const Header = () => {
             ) : (
               <>
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
+                <MenuItem
+                  onClick={() => {
+                    history.push('/profile')
+                  }}
+                >
+                  My account
+                </MenuItem>
                 <MenuItem onClick={handleLogout}>Logout</MenuItem>
               </>
             )}

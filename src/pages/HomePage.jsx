@@ -8,24 +8,50 @@ import { layDanhSachPhimAction } from 'src/redux/actions/QuanLyPhimAction'
 import Booking from 'src/components/home.component/Booking/Booking'
 import { layThongTinRapAction } from '../redux/actions/QuanLyRapAction'
 import { banner } from 'src/utils/sildeData'
-import { userLogin } from 'src/config/configLocalStorage'
-import { GET_AUTH } from 'src/redux/type'
+import { LocalStorage } from 'src/config/configLocalStorage'
+import { GET_AUTH, SET_AUTH, UPDATE_AUTH } from 'src/redux/type'
 
 export default function HomePage() {
   const { movieList } = useSelector(state => state.QuanLyPhimReducer)
   const { cinemaList } = useSelector(state => state.QuanLyRapReducer)
+  const { authUser } = useSelector(state => state.QuanLyNguoiDungReducer)
 
   const dispatch = useDispatch()
+
   useEffect(() => {
+    if (!LocalStorage) {
+      // dispatch({
+      //   type: UPDATE_AUTH,
+      //   payLoad: null
+      // })
+    } else {
+      if (!authUser) {
+        dispatch({
+          type: UPDATE_AUTH,
+          payLoad: LocalStorage
+        })
+      } else {
+        dispatch({
+          type: SET_AUTH,
+          payLoad: authUser
+        })
+      }
+    }
     dispatch(layDanhSachPhimAction())
     dispatch(layThongTinRapAction())
-    if (userLogin) {
-      dispatch({
-        type: GET_AUTH,
-        payLoad: userLogin
-      })
-    }
-  }, [dispatch])
+
+    // if (LocalStorage) {
+    //   dispatch({
+    //     type: GET_AUTH,
+    //     payLoad: LocalStorage
+    //   })
+    // } else {
+    //   dispatch({
+    //     type: GET_AUTH,
+    //     payLoad: null
+    //   })
+    // }
+  }, [dispatch, LocalStorage, authUser])
 
   // danh sach flim dang hot
   const hotMovie = movieList?.filter(item => item.hot === true)

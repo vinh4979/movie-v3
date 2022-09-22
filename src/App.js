@@ -11,6 +11,7 @@ import BookingPage from './pages/BookingPage'
 import DetailPage from './pages/DetailPage'
 import HomePage from './pages/HomePage'
 import { Redirect } from 'react-router-dom'
+import ProfilePage from './pages/ProfilePage'
 
 function App() {
   const theme = createTheme({
@@ -44,6 +45,11 @@ function App() {
           <Route path="/home" exact>
             <Header />
             <HomePage />
+            <Footer />
+          </Route>
+          <Route path="/profile">
+            <Header />
+            <ProfilePage />
             <Footer />
           </Route>
           <Route path="*" exact>

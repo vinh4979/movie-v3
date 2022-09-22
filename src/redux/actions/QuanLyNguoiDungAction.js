@@ -1,7 +1,7 @@
 import { TOKEN } from 'src/config/configApi'
 import { USER_ACCOUNT } from 'src/config/configLocalStorage'
 import { quanLyNguoiDungService } from 'src/services/QuanLyNguoiDungService'
-import { GET_AUTH, OPEN_MODAL, SIGNIN_SUCCESS } from '../type'
+import { GET_AUTH, GET_PROFILE, OPEN_MODAL, SIGNIN_SUCCESS } from '../type'
 
 // func login
 export const dangNhapAction = body => {
@@ -42,6 +42,22 @@ export const dangKyAction = body => {
       })
     } catch (err) {
       console.log('dang ky action err:', err)
+    }
+  }
+}
+
+// thong tin tai khoan
+export const thongTinTaiKhoanAction = body => {
+  return async dispatch => {
+    try {
+      const result = await quanLyNguoiDungService.thongTinTaiKhoan(body)
+      console.log('thong tin tai khoan action', result)
+      dispatch({
+        type: GET_PROFILE,
+        payLoad: result.data.content
+      })
+    } catch (err) {
+      console.log('dang nhap err:', err)
     }
   }
 }
