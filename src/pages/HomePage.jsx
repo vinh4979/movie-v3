@@ -20,10 +20,6 @@ export default function HomePage() {
 
   useEffect(() => {
     if (!LocalStorage) {
-      // dispatch({
-      //   type: UPDATE_AUTH,
-      //   payLoad: null
-      // })
     } else {
       if (!authUser) {
         dispatch({
@@ -39,19 +35,7 @@ export default function HomePage() {
     }
     dispatch(layDanhSachPhimAction())
     dispatch(layThongTinRapAction())
-
-    // if (LocalStorage) {
-    //   dispatch({
-    //     type: GET_AUTH,
-    //     payLoad: LocalStorage
-    //   })
-    // } else {
-    //   dispatch({
-    //     type: GET_AUTH,
-    //     payLoad: null
-    //   })
-    // }
-  }, [dispatch, LocalStorage, authUser])
+  }, [dispatch])
 
   // danh sach flim dang hot
   const hotMovie = movieList?.filter(item => item.hot === true)

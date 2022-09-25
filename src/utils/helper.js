@@ -50,6 +50,30 @@ export const lableDate = (
   </>
 )
 
+export const movieDetailContent = [
+  {
+    id: 1,
+    title: 'Directors: ',
+    content: 'Anthony RussoJoe, Joe Russo'
+  },
+
+  {
+    id: 1,
+    title: 'Stars: ',
+    content: 'Scarlett Johansson, Chris Evans, Mark Ruffalo, Chris Hem,...'
+  },
+  {
+    id: 1,
+    title: 'Genres: ',
+    content: 'Action, Thriller, Crime'
+  },
+  {
+    id: 1,
+    title: 'Technology: ',
+    content: '2D/Digitals'
+  }
+]
+
 export const isEmail = value =>
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
     value
@@ -86,4 +110,9 @@ export const isYesterday = someDate => {
     someDate.getMonth() === today.getMonth() &&
     someDate.getFullYear() === today.getFullYear()
   )
+}
+
+export const converDate = data => {
+  const date = new Date(data)
+  return date.toLocaleDateString()
 }

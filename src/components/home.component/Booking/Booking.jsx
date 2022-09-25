@@ -102,28 +102,6 @@ const Booking = ({ logo }) => {
 
               {/* cinema info */}
               <div className="cinema">
-                {/* {cinemaByBrand[0]?.lstCumRap.map((item, index) => {
-                  return (
-                    <>
-                      <div
-                        onClick={() => {
-                          HandleCumRap(item.maCumRap)
-                        }}
-                        key={index}
-                        className="cinemaItem"
-                      >
-                        <div>
-                          <img src={item.hinhAnh} alt="" />
-                        </div>
-                        <div>
-                          <h3>{item.tenCumRap}</h3>
-                          <p>{item.diaChi}</p>
-                        </div>
-                      </div>
-                      <hr />
-                    </>
-                  )
-                })} */}
                 <List>
                   {cinemaByBrand[0]?.lstCumRap.map((item, index) => {
                     return (

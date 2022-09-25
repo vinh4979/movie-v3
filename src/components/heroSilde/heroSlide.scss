@@ -7,6 +7,7 @@
 .hero-slide__item {
   padding: 9rem 0;
   width: 100%;
+  // height: 100%;
   position: relative;
   background-position: center;
   background-size: cover;
@@ -38,7 +39,7 @@
 
     &__info {
       width: 55%;
-      padding: 0 3rem;
+      padding: 0 32px; //carouel
       position: relative;
 
       @include tablet {
@@ -61,6 +62,12 @@
 
       .overview {
         font-weight: 700;
+        .movieInfor__detail {
+          .movieInfor__detail--item {
+            display: grid;
+            grid-template-columns: 150px 1fr;
+          }
+        }
       }
 
       .btns > * ~ * {
@@ -84,6 +91,7 @@
 
       img {
         width: 400px;
+        height: 100%;
         border-radius: $border-radius;
         box-shadow: $box-shadow;
 

@@ -7,28 +7,35 @@ import { layThongTinPhimTheoMaPhimAction } from 'src/redux/actions/QuanLyPhimAct
 import GlassBg from 'src/components/glassMorphismBackground/GlassBg'
 import DetailFilm from 'src/components/detailFilm/DetailFilm'
 import Description from 'src/components/Description/Description'
+import BannerDetailFilm from '../components/detailComponent.component/BannerDetailFilm/BannerDetailFilm'
+import ScheduleFilm from 'src/components/detailComponent.component/ScheduleFilm'
+import { Grid } from '@mui/material'
+import { LayThongTinLichChieuPhimAction } from 'src/redux/actions/QuanLyRapAction'
 
 export default function DetailPage() {
   const { id } = useParams()
 
   const dispatch = useDispatch()
   const { movieById } = useSelector(state => state.QuanLyPhimReducer)
-  console.log('params id:', movieById)
+  // get logo
+  const { cinemaList, movieSearch } = useSelector(
+    state => state.QuanLyRapReducer
+  )
+
+  console.log('Logo id:', movieSearch)
 
   useEffect(() => {
     dispatch(layThongTinPhimTheoMaPhimAction(id))
+    dispatch(LayThongTinLichChieuPhimAction(id))
   }, [dispatch, id])
+
+  const { cinemaByBrand } = useSelector(state => state.QuanLyRapReducer)
 
   return (
     <>
-      <GlassBg bg={movieById.hinhAnh} />
+      <BannerDetailFilm movieDetail={movieById} />
       <div className="container">
-        <div className="section mt-3">
-          <h1>Movie Detail</h1>
-          <hr />
-          <DetailFilm detail={movieById} />
-          <Description movie={movieById} />
-        </div>
+        <ScheduleFilm logo={cinemaList} movie={movieSearch} />
       </div>
     </>
   )

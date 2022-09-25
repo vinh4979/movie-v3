@@ -1,0 +1,19 @@
+@use '../../../scss' as *;
+
+.hero-slide__item {
+  &__content {
+    .poster_detail {
+      text-align: center !important;
+      justify-content: center !important;
+    }
+    .title_detail {
+      font-size: 4rem !important;
+      font-weight: 700 !important;
+      line-height: 1;
+    }
+    .btn-group {
+      display: flex;
+      align-items: center;
+    }
+  }
+}

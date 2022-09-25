@@ -10,6 +10,7 @@ import { Pagination, Navigation, Autoplay } from 'swiper'
 import MovieCard from '../movieCard/MovieCard'
 import { TrailerModal } from '../heroSilde/HeroSlide'
 import MovieClass from '../movieClass/MovieClass'
+import { Fragment } from 'react'
 
 const MovieList = ({ movieLst }) => {
   return (
@@ -45,13 +46,13 @@ const MovieList = ({ movieLst }) => {
           return (
             <SwiperSlide key={index}>
               {({ isActive }) => (
-                <>
+                <Fragment>
                   <MovieCard
                     item={item}
                     className={`${isActive}` ? 'active' : ''}
                   />
                   <MovieClass />
-                </>
+                </Fragment>
               )}
             </SwiperSlide>
           )

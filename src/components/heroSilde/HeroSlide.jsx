@@ -52,7 +52,6 @@ const HeroSlideItem = props => {
 
   const setModalActive = async () => {
     const modal = document.querySelector(`#modal_${item.maPhim}`)
-
     const videos = item.trailer
 
     if (videos.length > 0) {
