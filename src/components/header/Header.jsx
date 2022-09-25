@@ -16,7 +16,7 @@ import { useHistory } from 'react-router-dom'
 import { useState } from 'react'
 import PersonIcon from '@mui/icons-material/Person'
 import { useDispatch, useSelector } from 'react-redux'
-import { USER_LOGOUT_ALERT, WARNING } from 'src/redux/type'
+import { LOG_OUT, USER_LOGOUT_ALERT, WARNING } from 'src/redux/type'
 import MenuIcon from '@mui/icons-material/Menu'
 import { HashLink } from 'react-router-hash-link'
 
@@ -71,6 +71,9 @@ const Header = () => {
         type: WARNING,
         message: 'Do you want to logout?'
       }
+    })
+    dispatch({
+      type: LOG_OUT
     })
   }
 

@@ -1,7 +1,10 @@
 import {
   CLOSE_MODAL,
+  ERROR,
+  LOG_IN_FAIL,
   REQUITE_CHOOSING_SEAT,
   SIGNIN_SUCCESS,
+  SIGN_IN_FAIL,
   SUCCESS,
   USER_BOOKING_FAIL,
   USER_BOOKING_SUCCESS,
@@ -49,6 +52,7 @@ export const StateReducer = (state = stateDefault, action) => {
       state.alert.type = action.payLoad.type
       return { ...state }
     }
+
     case REQUITE_CHOOSING_SEAT: {
       state.stateModal = true
       state.alert.message = action.payLoad.message
@@ -74,6 +78,19 @@ export const StateReducer = (state = stateDefault, action) => {
       state.stateModal = true
       state.alert.message = action.payLoad.message
       state.alert.type = action.payLoad.type
+      return { ...state }
+    }
+
+    case LOG_IN_FAIL: {
+      state.stateModal = true
+      state.alert.message = action.payLoad
+      state.alert.type = ERROR
+      return { ...state }
+    }
+    case SIGN_IN_FAIL: {
+      state.stateModal = true
+      state.alert.message = action.payLoad
+      state.alert.type = ERROR
       return { ...state }
     }
 

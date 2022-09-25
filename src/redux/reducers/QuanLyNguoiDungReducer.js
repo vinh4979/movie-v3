@@ -1,4 +1,10 @@
-import { GET_AUTH, GET_PROFILE, UPDATE_AUTH, USER_LOGOUT } from '../type'
+import {
+  GET_AUTH,
+  GET_PROFILE,
+  LOG_OUT,
+  UPDATE_AUTH,
+  USER_LOGOUT
+} from '../type'
 
 const stateDefault = {
   authUser: null,
@@ -25,6 +31,11 @@ export const QuanLyNguoiDungReducer = (state = stateDefault, action) => {
     }
     case GET_PROFILE: {
       state.profile = action.payLoad
+      return { ...state }
+    }
+    case LOG_OUT: {
+      state.authUser = null
+      state.auth = null
       return { ...state }
     }
     default:

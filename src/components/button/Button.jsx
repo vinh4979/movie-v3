@@ -18,7 +18,7 @@ const Button = props => {
 export const OutlineButton = props => {
   return (
     <Button
-      className={`btn-outline ${props.className}`}
+      className={`btn-outline  ${props.className}`}
       onClick={props.onClick ? () => props.onClick() : null}
     >
       {props.children}
@@ -30,7 +30,7 @@ export const CardBtn = props => {
   return (
     <button
       onClick={props.onClick ? () => props.onClick() : null}
-      className={`button ${props.className} `}
+      className={`button  ${props.className} `}
     >
       {props.children}
     </button>

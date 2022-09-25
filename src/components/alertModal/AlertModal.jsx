@@ -6,6 +6,7 @@ import { datVeAction } from 'src/redux/actions/QuanLyDatVeAction'
 import {
   CLOSE_MODAL,
   CONFIRM,
+  ERROR,
   SUCCESS,
   USER_BOOKING_SUCCESS,
   USER_LOGOUT_SUCCESS,
@@ -92,6 +93,11 @@ const AlertModal = () => {
             // <SuccessIcon />
             // <ErrorIcon />
           )}
+          {alert.type === ERROR && (
+            // <WarningIcon />
+            // <SuccessIcon />
+            <ErrorIcon />
+          )}
 
           {/*  <ErrorIcon /> */}
           {/* <SuccessIcon /> */}
@@ -127,6 +133,24 @@ const AlertModal = () => {
               <Button
                 variant="contained"
                 color="success"
+                width={100}
+                sx={{
+                  width: '100px',
+                  color: 'white'
+                }}
+                onClick={() =>
+                  dispatch({
+                    type: CLOSE_MODAL
+                  })
+                }
+              >
+                Ok
+              </Button>
+            )}
+            {alert.type === ERROR && (
+              <Button
+                variant="contained"
+                color="warning"
                 width={100}
                 sx={{
                   width: '100px',

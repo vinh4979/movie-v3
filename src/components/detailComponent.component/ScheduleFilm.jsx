@@ -1,7 +1,6 @@
 import { Avatar, Box, Divider, Paper, Typography } from '@mui/material'
 import React from 'react'
 import { useState } from 'react'
-import { format } from 'date-format'
 import { OutlineButton } from '../button/Button'
 import { useHistory } from 'react-router-dom'
 import moment from 'moment'
@@ -123,6 +122,21 @@ export default function ScheduleFilm({ logo, movie }) {
               </>
             )
           })}
+          {heThongRap === undefined && (
+            <Box
+              sx={{
+                width: ' 100%',
+                height: '100%',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center'
+              }}
+            >
+              <Typography variant={'body2'}>
+                THERE ARE NO MOVIE SHOWING NOW
+              </Typography>
+            </Box>
+          )}
         </Box>
       </Paper>
     </Box>

@@ -1,7 +1,13 @@
 import { TOKEN } from 'src/config/configApi'
 import { USER_ACCOUNT } from 'src/config/configLocalStorage'
 import { quanLyNguoiDungService } from 'src/services/QuanLyNguoiDungService'
-import { GET_AUTH, GET_PROFILE, OPEN_MODAL, SIGNIN_SUCCESS } from '../type'
+import {
+  GET_AUTH,
+  GET_PROFILE,
+  LOG_IN_FAIL,
+  SIGNIN_SUCCESS,
+  SIGN_IN_FAIL
+} from '../type'
 
 // func login
 export const dangNhapAction = body => {
@@ -20,7 +26,10 @@ export const dangNhapAction = body => {
       })
     } catch (err) {
       console.log('dang nhap err:', err)
-      dispatch({})
+      dispatch({
+        type: LOG_IN_FAIL,
+        payLoad: 'Email or password went wrong'
+      })
     }
   }
 }
@@ -41,6 +50,10 @@ export const dangKyAction = body => {
         payLoad: 'Sign up successfully'
       })
     } catch (err) {
+      dispatch({
+        type: SIGN_IN_FAIL,
+        payLoad: 'Email or user is uesed'
+      })
       console.log('dang ky action err:', err)
     }
   }

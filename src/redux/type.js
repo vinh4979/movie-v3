@@ -40,3 +40,6 @@ export const USER_LOGOUT_ALERT = 'USER_LOGOUT_ALERT'
 export const USER_LOGOUT_SUCCESS = 'USER_LOGOUT_SUCCESS'
 
 export const GET_PROFILE = 'GET_PROFILE'
+export const LOG_OUT = 'LOG_OUT'
+export const LOG_IN_FAIL = 'LOG_IN_FAIL'
+export const SIGN_IN_FAIL = 'SIGN_IN_FAIL'
