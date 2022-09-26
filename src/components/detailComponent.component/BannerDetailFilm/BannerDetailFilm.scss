@@ -1,6 +1,9 @@
 @use '../../../scss' as *;
 
 .hero-slide__item {
+  img{
+    
+  }
   &__content {
     .poster_detail {
       text-align: center !important;

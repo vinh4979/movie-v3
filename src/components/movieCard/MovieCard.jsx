@@ -36,7 +36,7 @@ const MovieCard = props => {
         <h3>{item.tenPhim}</h3>
         <div className="card-button">
           <Link href={`/detail/${item.maPhim}`} to={`/detail/${item.maPhim}`}>
-            <CardBtn className="">Deatail</CardBtn>
+            <CardBtn className="">Detail</CardBtn>
           </Link>
           <CardBtn className="btn-booking">
             <span>
