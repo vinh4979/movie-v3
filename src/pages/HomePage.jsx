@@ -11,7 +11,9 @@ import { banner } from 'src/utils/sildeData'
 import { LocalStorage } from 'src/config/configLocalStorage'
 import { SET_AUTH, UPDATE_AUTH } from 'src/redux/type'
 import Loading from 'src/components/Loading/Loading'
-import BookingModal from 'src/components/bookingModal/BookingModal'
+import ScrollToTop from '../components/ScrollToTop/ScrollToTop'
+import { loadingVariants } from 'src/utils/helper'
+import { motion } from 'framer-motion'
 
 export default function HomePage() {
   const { isLoading } = useSelector(state => state.StateReducer)
@@ -46,13 +48,15 @@ export default function HomePage() {
   // phim dang chieu
   const showingMovie = movieList?.filter(item => item.dangChieu === true)
 
-  // phim sap chieu
+  // phim sap chieuyarn
   const comming = movieList?.filter(item => item.sapChieu === true)
 
   return (
-    <>
-      <BookingModal />
-
+    <motion.section
+      variants={loadingVariants}
+      initial="hidden"
+      animate="visible"
+    >
       {isLoading && <Loading />}
       {!isLoading && (
         <>
@@ -91,10 +95,11 @@ export default function HomePage() {
           </div>
           {/* booking */}
           <Booking logo={cinemaList} />
+          <ScrollToTop to="home#homepage" />
           {/* search bar */}
           {/* <SearchBar movieList={movieList} /> */}
         </>
       )}
-    </>
+    </motion.section>
   )
 }

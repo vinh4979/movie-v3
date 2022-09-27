@@ -6,6 +6,8 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { thongTinTaiKhoanAction } from '../redux/actions/QuanLyNguoiDungAction'
 import ProfileTransaction from 'src/components/profile.component/ProfileTransaction'
+import { motion } from 'framer-motion'
+import { loadingVariants } from 'src/utils/helper'
 
 export default function ProfilePage() {
   const dispatch = useDispatch()
@@ -16,63 +18,69 @@ export default function ProfilePage() {
     dispatch(thongTinTaiKhoanAction())
   }, [dispatch])
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        justifyContent: 'center',
-        marginTop: '10rem',
-        borderRadius: '10px'
-      }}
+    <motion.section
+      variants={loadingVariants}
+      initial="hidden"
+      animate="visible"
     >
       <Box
         sx={{
-          width: 900
-          // p: 4
+          display: 'flex',
+          justifyContent: 'center',
+          marginTop: '10rem',
+          borderRadius: '10px'
         }}
       >
-        <Paper>
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              alignItems: 'center',
-              p: 4
-            }}
-          >
-            <Avatar
+        <Box
+          sx={{
+            width: 900
+            // p: 4
+          }}
+        >
+          <Paper>
+            <Box
               sx={{
-                width: { xs: '70px', sm: '100px' },
-                height: { xs: '70px', sm: '100px' },
-                mb: 2
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+                p: 4
               }}
             >
-              <PersonIcon
+              <Avatar
                 sx={{
-                  fontSize: '5rem'
+                  width: { xs: '70px', sm: '100px' },
+                  height: { xs: '70px', sm: '100px' },
+                  mb: 2
+                }}
+              >
+                <PersonIcon
+                  sx={{
+                    fontSize: '5rem'
+                  }}
+                />
+              </Avatar>
+              <Typography
+                textAlign={'center'}
+                variant="h5"
+                mb={2}
+                fontWeight={900}
+              >
+                Hi, {userProfile?.taiKhoan} !
+              </Typography>
+              {/* user infor */}
+              <ProfileContent userProfile={userProfile} />
+              <Divider
+                sx={{
+                  width: '100%'
                 }}
               />
-            </Avatar>
-            <Typography
-              textAlign={'center'}
-              variant="h5"
-              mb={2}
-              fontWeight={900}
-            >
-              Hi, {userProfile?.taiKhoan} !
-            </Typography>
-            {/* user infor */}
-            <ProfileContent userProfile={userProfile} />
-            <Divider
-              sx={{
-                width: '100%'
-              }}
-            />
-            {/* <hr /> */}
-            <ProfileTransaction userProfile={userProfile} />
-          </Box>
-        </Paper>
+              {/* <hr /> */}
+              <ProfileTransaction userProfile={userProfile} />
+            </Box>
+          </Paper>
+        </Box>
       </Box>
-    </Box>
+    </motion.section>
   )
 }

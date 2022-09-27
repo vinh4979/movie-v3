@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { quanLyDatVeAction } from '../redux/actions/QuanLyDatVeAction'
 import Ticket from 'src/components/booking.component/Ticket'
 import Loading from 'src/components/Loading/Loading'
+import { motion } from 'framer-motion'
+import { loadingVariants } from 'src/utils/helper'
 
 const BookingPage = () => {
   const { isLoading } = useSelector(state => state.StateReducer)
@@ -25,7 +27,10 @@ const BookingPage = () => {
     <>
       {isLoading && <Loading />}
       {!isLoading && (
-        <div
+        <motion.section
+          variants={loadingVariants}
+          initial="hidden"
+          animate="visible"
           className="container"
           style={{
             marginTop: '9rem'
@@ -43,7 +48,7 @@ const BookingPage = () => {
               </Grid>
             </Grid>
           </Box>
-        </div>
+        </motion.section>
       )}
     </>
   )

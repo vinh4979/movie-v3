@@ -11,8 +11,11 @@ import MovieCard from '../movieCard/MovieCard'
 import { TrailerModal } from '../heroSilde/HeroSlide'
 import MovieClass from '../movieClass/MovieClass'
 import { Fragment } from 'react'
+import { useHistory } from 'react-router-dom'
 
 const MovieList = ({ movieLst }) => {
+  const history = useHistory()
+
   return (
     <div className="movie-list " style={{ overflow: 'visible' }}>
       <Swiper
@@ -48,6 +51,9 @@ const MovieList = ({ movieLst }) => {
               {({ isActive }) => (
                 <Fragment>
                   <MovieCard
+                    onClick={() => {
+                      history.push(`/detail/${item.maPhim}`)
+                    }}
                     item={item}
                     className={`${isActive}` ? 'active' : ''}
                   />

@@ -23,15 +23,18 @@ import { HashLink } from 'react-router-hash-link'
 const headerNav = [
   {
     display: 'Home',
-    path: '#homepage'
+    path: '#homepage',
+    goTo: '/home'
   },
   {
     display: 'Movies',
-    path: '#homepage__movielist'
+    path: '#homepage__movielist',
+    goTo: '/home'
   },
   {
     display: 'Booking',
-    path: '#homepage__schedule'
+    path: '#homepage__schedule',
+    goTo: '/home'
   }
 ]
 
@@ -104,7 +107,7 @@ const Header = () => {
         </div>
         <ul className="header__nav">
           {headerNav.map((item, index) => (
-            <HashLink key={index} smooth to={item.path}>
+            <HashLink key={index} smooth to={`${item.goTo}${item.path}`}>
               <li className={`${index === active ? 'active' : ''}`}>
                 {/* <Link to={item.path}>{item.display}</Link> */}
                 <Typography

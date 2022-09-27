@@ -4,6 +4,7 @@ import Button, { CardBtn } from '../button/Button'
 import './movie-card.scss'
 import { useDispatch } from 'react-redux'
 import { BOOKING_MODAL } from 'src/redux/type'
+import { useHistory } from 'react-router-dom'
 
 const MovieCard = props => {
   const dispatch = useDispatch()

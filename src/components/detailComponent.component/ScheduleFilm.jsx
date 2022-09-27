@@ -5,11 +5,16 @@ import { OutlineButton } from '../button/Button'
 import { useHistory } from 'react-router-dom'
 import moment from 'moment'
 import { Fragment } from 'react'
+import { BOOKING_MODAL } from 'src/redux/type'
+import { useDispatch } from 'react-redux'
+import { motion } from 'framer-motion'
+import { loadingVariants } from 'src/utils/helper'
 
 export default function ScheduleFilm({ logo, movie }) {
   const [active, setActive] = useState(0)
   const [cineByBrand, setCineByBrand] = useState('')
   const history = useHistory()
+  const dispatch = useDispatch()
 
   const handleActive = (item, index) => {
     setActive(index)
@@ -131,17 +136,24 @@ export default function ScheduleFilm({ logo, movie }) {
                 alignItems: 'center'
               }}
             >
-              <Typography
-                variant={'h6'}
-                fontWeight="700"
-                sx={{
-                  border: '1px solid white',
-                  padding: '5px 10px',
-                  borderRadius: '5px'
-                }}
+              <motion.div
+                variants={loadingVariants}
+                initial="hidden"
+                animate="visible"
+                key={cineByBrand}
               >
-                THERE ARE NO MOVIE SHOWING NOW
-              </Typography>
+                <Typography
+                  variant={'h6'}
+                  fontWeight="700"
+                  sx={{
+                    border: '1px solid white',
+                    padding: '5px 10px',
+                    borderRadius: '5px'
+                  }}
+                >
+                  THERE ARE NO MOVIE SHOWING NOW
+                </Typography>
+              </motion.div>
             </Box>
           )}
           {heThongRap !== undefined && (
@@ -154,72 +166,87 @@ export default function ScheduleFilm({ logo, movie }) {
               {bookingSchedule()?.map((item, index) => {
                 return (
                   <Fragment key={index}>
-                    <Box
-                      key={index}
-                      sx={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '10px',
-                        mt: 3,
-                        mb: 3
-                      }}
+                    <motion.section
+                      variants={loadingVariants}
+                      initial="hidden"
+                      animate="visible"
+                      key={cineByBrand}
                     >
-                      <Avatar
+                      <Box
+                        key={index}
                         sx={{
-                          width: '50px',
-                          height: '50px'
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '10px',
+                          mt: 3,
+                          mb: 3
                         }}
-                        src={item.hinhAnh}
-                      />
-                      <Typography variant="h6" fontWeight={700} color={'error'}>
-                        {item.tenCumRap}
-                      </Typography>
-                    </Box>
-                    <Box>
-                      {item.lichChieu?.map((item, index) => {
-                        return (
-                          <Fragment key={index}>
-                            <Typography mt={3} mb={3} color="yellow">
-                              Date-time: {item.ngayChieu}
-                            </Typography>
-                            <Box
-                              sx={{
-                                mb: 2
-                              }}
-                            >
-                              {item.item?.map((item, index) => {
-                                return (
-                                  <Box
-                                    sx={{
-                                      display: 'inline-block',
-                                      marginRight: '10px',
-                                      marginBottom: '10px'
-                                    }}
-                                  >
-                                    <OutlineButton
-                                      key={index}
-                                      onClick={() => {
-                                        history.push(
-                                          `/booking/${item.maLichChieu}`
-                                        )
+                      >
+                        <Avatar
+                          sx={{
+                            width: '50px',
+                            height: '50px'
+                          }}
+                          src={item.hinhAnh}
+                        />
+                        <Typography
+                          variant="h6"
+                          fontWeight={700}
+                          color={'error'}
+                        >
+                          {item.tenCumRap}
+                        </Typography>
+                      </Box>
+                      <Box>
+                        {item.lichChieu?.map((item, index) => {
+                          return (
+                            <Fragment key={index}>
+                              <Typography mt={3} mb={3} color="yellow">
+                                Date-time: {item.ngayChieu}
+                              </Typography>
+                              <Box
+                                sx={{
+                                  mb: 2
+                                }}
+                              >
+                                {item.item?.map((item, index) => {
+                                  return (
+                                    <Box
+                                      sx={{
+                                        display: 'inline-block',
+                                        marginRight: '10px',
+                                        marginBottom: '10px'
                                       }}
                                     >
-                                      <Typography
-                                        variant="body1"
-                                        fontWeight={400}
+                                      <OutlineButton
+                                        key={index}
+                                        onClick={() => {
+                                          dispatch({
+                                            type: BOOKING_MODAL,
+                                            payLoad: false
+                                          })
+                                          history.push(
+                                            `/booking/${item.maLichChieu}`
+                                          )
+                                        }}
                                       >
-                                        {item.gioChieu}
-                                      </Typography>
-                                    </OutlineButton>
-                                  </Box>
-                                )
-                              })}
-                            </Box>
-                            <Divider />
-                          </Fragment>
-                        )
-                      })}
-                    </Box>
+                                        <Typography
+                                          variant="body1"
+                                          fontWeight={400}
+                                        >
+                                          {item.gioChieu}
+                                        </Typography>
+                                      </OutlineButton>
+                                    </Box>
+                                  )
+                                })}
+                              </Box>
+                              <Divider />
+                            </Fragment>
+                          )
+                        })}
+                      </Box>
+                    </motion.section>
                   </Fragment>
                 )
               })}

@@ -15,10 +15,12 @@ import bg from 'src/assets/img/bg-popcorn.jpg'
 import { GroupID } from 'src/config/configApi'
 import { dangKyAction } from 'src/redux/actions/QuanLyNguoiDungAction'
 import { rules } from 'src/utils/rules'
+import { motion } from 'framer-motion'
+import { loadingVariants } from 'src/utils/helper'
 
 const MainBox = styled(Box)(({ theme }) => ({
   width: '100%',
-  height: '100vh',
+  height: '120vh',
   backgroundImage: `url(${bg})`,
   backgroundRepeat: 'none',
   backgroundSize: 'cover',
@@ -106,7 +108,11 @@ const SignupPage = () => {
     }
   }
   return (
-    <>
+    <motion.section
+      variants={loadingVariants}
+      initial="hidden"
+      animate="visible"
+    >
       <MainBox component="main">
         <Container
           component="div"
@@ -114,6 +120,7 @@ const SignupPage = () => {
           sx={{
             borderRadius: '5px',
             bgcolor: 'rgb(0,0,0,0.7)'
+            // marginTop: '10rem'
           }}
         >
           <Typography
@@ -304,7 +311,7 @@ const SignupPage = () => {
           </Box>
         </Container>
       </MainBox>
-    </>
+    </motion.section>
   )
 }
 

@@ -8,6 +8,8 @@ import { Link } from 'react-router-dom'
 import bg from 'src/assets/img/bg-popcorn.jpg'
 import { dangNhapAction } from 'src/redux/actions/QuanLyNguoiDungAction'
 import { rules } from 'src/utils/rules'
+import { motion } from 'framer-motion'
+import { loadingVariants } from 'src/utils/helper'
 
 const MainBox = styled(Box)(({ theme }) => ({
   width: '100%',
@@ -72,7 +74,11 @@ export default function SigninPage() {
     }
   }
   return (
-    <>
+    <motion.section
+      variants={loadingVariants}
+      initial="hidden"
+      animate="visible"
+    >
       <MainBox component="main">
         <Container
           component="div"
@@ -186,6 +192,6 @@ export default function SigninPage() {
           </Box>
         </Container>
       </MainBox>
-    </>
+    </motion.section>
   )
 }

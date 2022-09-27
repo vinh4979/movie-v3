@@ -7,6 +7,8 @@ import BannerDetailFilm from '../components/detailComponent.component/BannerDeta
 import ScheduleFilm from 'src/components/detailComponent.component/ScheduleFilm'
 import { LayThongTinLichChieuPhimAction } from 'src/redux/actions/QuanLyRapAction'
 import { Box } from '@mui/material'
+import { loadingVariants } from 'src/utils/helper'
+import { motion } from 'framer-motion'
 
 export default function DetailPage() {
   const { id } = useParams()
@@ -24,7 +26,11 @@ export default function DetailPage() {
   }, [dispatch, id])
 
   return (
-    <>
+    <motion.section
+      variants={loadingVariants}
+      initial="hidden"
+      animate="visible"
+    >
       <BannerDetailFilm movieDetail={movieById} />
       <div className="container">
         <Box
@@ -35,6 +41,6 @@ export default function DetailPage() {
           <ScheduleFilm logo={cinemaList} movie={movieSearch} />
         </Box>
       </div>
-    </>
+    </motion.section>
   )
 }

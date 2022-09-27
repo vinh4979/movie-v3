@@ -12,6 +12,7 @@ import DetailPage from './pages/DetailPage'
 import HomePage from './pages/HomePage'
 import { Redirect } from 'react-router-dom'
 import ProfilePage from './pages/ProfilePage'
+import BookingModal from './components/bookingModal/BookingModal'
 
 function App() {
   const theme = createTheme({
@@ -24,6 +25,7 @@ function App() {
       <CssBaseline />
       <BrowserRouter>
         <AlertModal />
+        <BookingModal />
         <Switch>
           <Route path="/signin" exact>
             <Header />

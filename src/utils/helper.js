@@ -116,3 +116,81 @@ export const converDate = data => {
   const date = new Date(data)
   return date.toLocaleDateString()
 }
+
+export const loadingCineVariants = {
+  hidden: {
+    opacity: 0
+  },
+  visible: {
+    opacity: 1,
+    transition: {
+      duration: 0.3
+    }
+  }
+}
+export const loadingScheduleVariants = {
+  hidden: {
+    opacity: 0
+  },
+  visible: {
+    opacity: 1,
+    transition: {
+      duration: 1
+    }
+  }
+}
+
+export const loadingVariants = {
+  hidden: {
+    opacity: 0
+  },
+  visible: {
+    opacity: 1,
+    transition: {
+      duration: 1
+    }
+  }
+}
+
+export const loadingVariants2 = {
+  hidden: {
+    opacity: 0
+  },
+  visible: {
+    opacity: 1,
+    transition: {
+      duration: 0.8
+    }
+  }
+}
+
+export const loadingVariants3 = {
+  hidden: {
+    opacity: 0,
+    x: 200
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.8 }
+  }
+}
+
+export const loadingVariants4 = {
+  hidden: {
+    opacity: 0
+  },
+  visible: {
+    opacity: 1,
+    transition: {
+      duration: 0.5
+    }
+  }
+}
+
+export const exitVariants = {
+  opacity: 0,
+  x: -200,
+  y: 0,
+  transition: { duration: 0.5 }
+}

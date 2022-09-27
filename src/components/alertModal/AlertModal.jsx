@@ -198,7 +198,7 @@ const AlertModal = () => {
                   dispatch({
                     type: CLOSE_MODAL
                   })
-                  history.push('/')
+                  history.goBack()
                 }}
               >
                 Ok
@@ -275,7 +275,7 @@ const AlertModal = () => {
                     dispatch({
                       type: USER_LOGOUT
                     })
-                    history.push('/')
+                    history.goBack()
                     localStorage.clear()
                   }}
                 >
@@ -315,7 +315,7 @@ const AlertModal = () => {
                     dispatch({
                       type: CLOSE_MODAL
                     })
-                    history.push('/')
+                    history.push('/profile')
                   }}
                 >
                   History

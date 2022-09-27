@@ -19,10 +19,17 @@ import {
   Typography
 } from '@mui/material'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
-import { randomDuration, randomNumber } from 'src/utils/helper'
+import {
+  loadingCineVariants,
+  loadingScheduleVariants,
+  loadingVariants,
+  randomDuration,
+  randomNumber
+} from 'src/utils/helper'
 import LogoImb from 'src/assets/img/imdb-logo.png'
 import { OutlineButton } from 'src/components/button/Button'
 import { useHistory } from 'react-router-dom'
+import { motion } from 'framer-motion'
 
 const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
   padding: theme.spacing(2),
@@ -102,7 +109,13 @@ const Booking = ({ logo }) => {
               </div>
 
               {/* cinema info */}
-              <div className="cinema">
+              <motion.div
+                variants={loadingScheduleVariants}
+                initial="hidden"
+                animate="visible"
+                key={chooseCinema}
+                className="cinema"
+              >
                 <List>
                   {cinemaByBrand[0]?.lstCumRap.map((item, index) => {
                     return (
@@ -147,9 +160,15 @@ const Booking = ({ logo }) => {
                     )
                   })}
                 </List>
-              </div>
+              </motion.div>
 
-              <div className="schedule">
+              <motion.div
+                variants={loadingScheduleVariants}
+                initial="hidden"
+                animate="visible"
+                key={flimByBrandCinema}
+                className="schedule"
+              >
                 {phimTheoCumRap?.map((item, index) => {
                   return (
                     <Accordion
@@ -237,14 +256,19 @@ const Booking = ({ logo }) => {
                     </Accordion>
                   )
                 })}
-              </div>
+              </motion.div>
             </div>
           </Paper>
         </Box>
       </div>
       {/* mobile */}
 
-      <div className=" container mobile_booking_container">
+      <motion.div
+        variants={loadingVariants}
+        initial="hidden"
+        animate="visible"
+        className=" container mobile_booking_container"
+      >
         <Paper sx={{ pt: 1 }}>
           <div className=" mobile_brandLogo">
             {logo?.map((item, index) => {
@@ -380,7 +404,7 @@ const Booking = ({ logo }) => {
             })}
           </Box>
         </Paper>
-      </div>
+      </motion.div>
     </>
   )
 }
