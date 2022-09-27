@@ -2,6 +2,7 @@ import { quanLyPhimService } from 'src/services/QuanLyPhimService'
 import {
   LAY_DANH_SACH_BANNER,
   LAY_DANH_SACH_PHIM,
+  LOADING,
   THONG_TIN_PHIM_THEO_ID
 } from 'src/redux/type'
 
@@ -34,13 +35,21 @@ export const layDanhSachmaPhimBannerAction = () => {
 
 export const layDanhSachPhimAction = () => {
   return async dispatch => {
+    dispatch({
+      type: LOADING,
+      payLoad: true
+    })
     try {
       const result = await quanLyPhimService.layDanhSachPhim()
       dispatch({
         type: LAY_DANH_SACH_PHIM,
         movieList: result.data.content
       })
-      console.log('list phim', result)
+      dispatch({
+        type: LOADING,
+        payLoad: false
+      })
+      // console.log('list phim', result)
     } catch (err) {
       // console.log('list phim err', err)
     }

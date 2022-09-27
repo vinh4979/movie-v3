@@ -10,8 +10,11 @@ import { layThongTinRapAction } from '../redux/actions/QuanLyRapAction'
 import { banner } from 'src/utils/sildeData'
 import { LocalStorage } from 'src/config/configLocalStorage'
 import { GET_AUTH, SET_AUTH, UPDATE_AUTH } from 'src/redux/type'
+import Loading from 'src/components/Loading/Loading'
+import BookingModal from 'src/components/bookingModal/BookingModal'
 
 export default function HomePage() {
+  const { isLoading } = useSelector(state => state.StateReducer)
   const { movieList } = useSelector(state => state.QuanLyPhimReducer)
   const { cinemaList } = useSelector(state => state.QuanLyRapReducer)
   const { authUser } = useSelector(state => state.QuanLyNguoiDungReducer)
@@ -48,43 +51,50 @@ export default function HomePage() {
 
   return (
     <>
-      <HeroSlide bannerList={banner} />
-      <div className="container" id="homepage__movielist">
-        {/* trending now */}
-        <div className="section mb-3">
-          <div className="section__header mb-2">
-            <h2>TRENDING NOW</h2>
-            <Link to="/movie">
-              <OutlineButton className="small">View More</OutlineButton>
-            </Link>
-          </div>
-          <MovieList movieLst={hotMovie} />
-        </div>
+      <BookingModal />
 
-        <div className="section mb-3">
-          <div className="section__header mb-2">
-            <h2>Showing Movie </h2>
-            <Link to="/movie">
-              <OutlineButton className="small">View More</OutlineButton>
-            </Link>
-          </div>
-          <MovieList movieLst={showingMovie} />
-        </div>
+      {isLoading && <Loading />}
+      {!isLoading && (
+        <>
+          <HeroSlide bannerList={banner} />
+          <div className="container" id="homepage__movielist">
+            {/* trending now */}
+            <div className="section mb-3">
+              <div className="section__header mb-2">
+                <h2>TRENDING NOW</h2>
+                <Link to="/movie">
+                  <OutlineButton className="small">View More</OutlineButton>
+                </Link>
+              </div>
+              <MovieList movieLst={hotMovie} />
+            </div>
 
-        <div className="section mb-3">
-          <div className="section__header mb-2">
-            <h2>Comming Movie </h2>
-            <Link to="/movie">
-              <OutlineButton className="small">View More</OutlineButton>
-            </Link>
+            <div className="section mb-3">
+              <div className="section__header mb-2">
+                <h2>Showing Movie </h2>
+                <Link to="/movie">
+                  <OutlineButton className="small">View More</OutlineButton>
+                </Link>
+              </div>
+              <MovieList movieLst={showingMovie} />
+            </div>
+
+            <div className="section mb-3">
+              <div className="section__header mb-2">
+                <h2>Comming Movie </h2>
+                <Link to="/movie">
+                  <OutlineButton className="small">View More</OutlineButton>
+                </Link>
+              </div>
+              <MovieList movieLst={comming} />
+            </div>
           </div>
-          <MovieList movieLst={comming} />
-        </div>
-      </div>
-      {/* booking */}
-      <Booking logo={cinemaList} />
-      {/* search bar */}
-      {/* <SearchBar movieList={movieList} /> */}
+          {/* booking */}
+          <Booking logo={cinemaList} />
+          {/* search bar */}
+          {/* <SearchBar movieList={movieList} /> */}
+        </>
+      )}
     </>
   )
 }

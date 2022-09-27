@@ -8,8 +8,11 @@ import { quanLyDatVeAction } from '../redux/actions/QuanLyDatVeAction'
 import Ticket from 'src/components/booking.component/Ticket'
 import { USER_ACCOUNT } from 'src/config/configLocalStorage'
 import { useHistory } from 'react-router-dom'
+import Loading from 'src/components/Loading/Loading'
 
 const BookingPage = () => {
+  const { isLoading } = useSelector(state => state.StateReducer)
+
   const params = useParams()
   const dispatch = useDispatch()
   const { roomCinema, gheDangDat } = useSelector(
@@ -21,25 +24,30 @@ const BookingPage = () => {
   }, [dispatch, params.id])
 
   return (
-    <div
-      className="container"
-      style={{
-        marginTop: '9rem'
-      }}
-    >
-      <Box component="main">
-        <Grid>
-          <Grid container spacing={2}>
-            <Grid item md={8} xs={12}>
-              <Seat cineRoom={roomCinema} gheDangDat={gheDangDat} />
+    <>
+      {isLoading && <Loading />}
+      {!isLoading && (
+        <div
+          className="container"
+          style={{
+            marginTop: '9rem'
+          }}
+        >
+          <Box component="main">
+            <Grid>
+              <Grid container spacing={2}>
+                <Grid item md={8} xs={12}>
+                  <Seat cineRoom={roomCinema} gheDangDat={gheDangDat} />
+                </Grid>
+                <Grid item md={4} xs={12}>
+                  <Ticket cineRoom={roomCinema} gheDangDat={gheDangDat} />
+                </Grid>
+              </Grid>
             </Grid>
-            <Grid item md={4} xs={12}>
-              <Ticket cineRoom={roomCinema} gheDangDat={gheDangDat} />
-            </Grid>
-          </Grid>
-        </Grid>
-      </Box>
-    </div>
+          </Box>
+        </div>
+      )}
+    </>
   )
 }
 

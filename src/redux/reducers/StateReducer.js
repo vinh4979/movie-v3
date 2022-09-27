@@ -1,6 +1,8 @@
 import {
+  BOOKING_MODAL,
   CLOSE_MODAL,
   ERROR,
+  LOADING,
   LOG_IN_FAIL,
   REQUITE_CHOOSING_SEAT,
   SIGNIN_SUCCESS,
@@ -15,6 +17,8 @@ import {
 import { OPEN_MODAL } from '../type'
 
 const stateDefault = {
+  isBookingModal: true,
+  isLoading: false,
   stateModal: false,
   alert: {
     message: null,
@@ -91,6 +95,14 @@ export const StateReducer = (state = stateDefault, action) => {
       state.stateModal = true
       state.alert.message = action.payLoad
       state.alert.type = ERROR
+      return { ...state }
+    }
+    case LOADING: {
+      state.isLoading = action.payLoad
+      return { ...state }
+    }
+    case BOOKING_MODAL: {
+      state.isBookingModal = action.payLoad
       return { ...state }
     }
 

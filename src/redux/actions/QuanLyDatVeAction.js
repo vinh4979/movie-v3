@@ -2,6 +2,7 @@ import { quanLyDatVeService } from 'src/services/QuanLyDatVeService'
 import {
   CHOOSEN_SEAT,
   GET_ROOM_CINEMA,
+  LOADING,
   USER_BOOKING_FAIL,
   WARNING
 } from '../type'
@@ -9,13 +10,21 @@ import { USER_ACCOUNT } from '../../config/configLocalStorage'
 
 export const quanLyDatVeAction = maLichChieu => {
   return async dispatch => {
+    dispatch({
+      type: LOADING,
+      payLoad: true
+    })
     try {
       const result = await quanLyDatVeService.layDanhSachPhongVe(maLichChieu)
       dispatch({
         type: GET_ROOM_CINEMA,
         payLoad: result.data.content
       })
-      console.log('Quan ly dat ve action:', result)
+      dispatch({
+        type: LOADING,
+        payLoad: false
+      })
+      // console.log('Quan ly dat ve action:', result)
     } catch (err) {
       console.log('Quan ly dat ve Action err ', err)
     }

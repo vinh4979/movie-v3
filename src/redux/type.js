@@ -43,3 +43,6 @@ export const GET_PROFILE = 'GET_PROFILE'
 export const LOG_OUT = 'LOG_OUT'
 export const LOG_IN_FAIL = 'LOG_IN_FAIL'
 export const SIGN_IN_FAIL = 'SIGN_IN_FAIL'
+
+export const LOADING = 'LOADING'
+export const BOOKING_MODAL = 'BOOKING_MODAL'

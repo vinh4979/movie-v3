@@ -2,8 +2,11 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Button, { CardBtn } from '../button/Button'
 import './movie-card.scss'
+import { useDispatch } from 'react-redux'
+import { BOOKING_MODAL } from 'src/redux/type'
 
 const MovieCard = props => {
+  const dispatch = useDispatch()
   const bg = props.item.hinhAnh
   const item = props.item
 
@@ -38,7 +41,15 @@ const MovieCard = props => {
           <Link href={`/detail/${item.maPhim}`} to={`/detail/${item.maPhim}`}>
             <CardBtn className="">Deatail</CardBtn>
           </Link>
-          <CardBtn className="btn-booking">
+          <CardBtn
+            className="btn-booking"
+            onClick={() => {
+              dispatch({
+                type: BOOKING_MODAL,
+                payLoad: true
+              })
+            }}
+          >
             <span>
               <span>Booking</span>
             </span>

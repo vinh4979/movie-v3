@@ -22,14 +22,10 @@ export default function DetailPage() {
     state => state.QuanLyRapReducer
   )
 
-  console.log('Logo id:', movieSearch)
-
   useEffect(() => {
     dispatch(layThongTinPhimTheoMaPhimAction(id))
     dispatch(LayThongTinLichChieuPhimAction(id))
   }, [dispatch, id])
-
-  const { cinemaByBrand } = useSelector(state => state.QuanLyRapReducer)
 
   return (
     <>
