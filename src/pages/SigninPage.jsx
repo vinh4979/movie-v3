@@ -51,8 +51,7 @@ export default function SigninPage() {
     control,
     handleSubmit,
     getValues,
-    formState: { errors },
-    setError
+    formState: { errors }
   } = useForm({
     defaultValues: {
       email: '',

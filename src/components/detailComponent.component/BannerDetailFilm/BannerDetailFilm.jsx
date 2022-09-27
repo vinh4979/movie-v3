@@ -1,6 +1,5 @@
-import { Typography } from '@mui/material'
 import React from 'react'
-import Button, { OutlineButton } from 'src/components/button/Button'
+import { OutlineButton } from 'src/components/button/Button'
 import CircularProgressWithLabel from 'src/components/CircularProgressWithLabel/CircularProgressWithLabel'
 import { TrailerModal } from 'src/components/heroSilde/HeroSlide'
 import { converDate, movieDetailContent } from 'src/utils/helper'

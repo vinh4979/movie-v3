@@ -49,7 +49,13 @@ export default function BookingModal() {
         <Typography variant="h6" color="gray" textAlign="center">
           BOOKING MOVIE
         </Typography>
-        <ScheduleFilm logo={cinemaList} movie={movieSearch} />
+        <Box
+          sx={{
+            margin: '20px 15px 0 15px'
+          }}
+        >
+          <ScheduleFilm logo={cinemaList} movie={movieSearch} />
+        </Box>
       </Box>
     </StyledModal>
   )

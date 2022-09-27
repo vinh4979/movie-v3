@@ -78,7 +78,8 @@ const Booking = ({ logo }) => {
       <div className="container booking-table " id="homepage__schedule">
         <Box
           sx={{
-            margin: '0 32px'
+            margin: '0 32px',
+            marginTop: '4rem'
           }}
         >
           <Paper>

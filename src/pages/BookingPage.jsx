@@ -6,8 +6,6 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { quanLyDatVeAction } from '../redux/actions/QuanLyDatVeAction'
 import Ticket from 'src/components/booking.component/Ticket'
-import { USER_ACCOUNT } from 'src/config/configLocalStorage'
-import { useHistory } from 'react-router-dom'
 import Loading from 'src/components/Loading/Loading'
 
 const BookingPage = () => {

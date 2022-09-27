@@ -68,11 +68,7 @@ export default function ScheduleFilm({ logo, movie }) {
   console.log('MANG LICH CHIEU', bookingSchedule())
 
   return (
-    <Box
-      sx={{
-        margin: { xs: '32px 32px' }
-      }}
-    >
+    <Box>
       <Paper>
         <Box
           sx={{

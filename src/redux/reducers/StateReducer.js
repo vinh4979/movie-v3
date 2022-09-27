@@ -14,10 +14,9 @@ import {
   USER_LOGOUT_ALERT,
   USER_LOGOUT_SUCCESS
 } from '../type'
-import { OPEN_MODAL } from '../type'
 
 const stateDefault = {
-  isBookingModal: true,
+  isBookingModal: false,
   isLoading: false,
   stateModal: false,
   alert: {

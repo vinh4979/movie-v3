@@ -72,9 +72,9 @@ const Header = () => {
         message: 'Do you want to logout?'
       }
     })
-    dispatch({
-      type: LOG_OUT
-    })
+    // dispatch({
+    //   type: LOG_OUT
+    // })
   }
 
   useEffect(() => {

@@ -9,7 +9,7 @@ import Booking from 'src/components/home.component/Booking/Booking'
 import { layThongTinRapAction } from '../redux/actions/QuanLyRapAction'
 import { banner } from 'src/utils/sildeData'
 import { LocalStorage } from 'src/config/configLocalStorage'
-import { GET_AUTH, SET_AUTH, UPDATE_AUTH } from 'src/redux/type'
+import { SET_AUTH, UPDATE_AUTH } from 'src/redux/type'
 import Loading from 'src/components/Loading/Loading'
 import BookingModal from 'src/components/bookingModal/BookingModal'
 
@@ -38,7 +38,7 @@ export default function HomePage() {
     }
     dispatch(layDanhSachPhimAction())
     dispatch(layThongTinRapAction())
-  }, [dispatch])
+  }, [dispatch, LocalStorage, authUser])
 
   // danh sach flim dang hot
   const hotMovie = movieList?.filter(item => item.hot === true)
